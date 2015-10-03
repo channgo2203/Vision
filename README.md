@@ -1,9 +1,23 @@
-# SideWalkDetection
+# SideWalk Detection Algorithm
 
-####영상처리 기반 보행보조 알고리즘에 대한 테스트 어플리케이션입니다.
+####Sidewalk Detection Algorithm based on Line Detection
 
-기존의 C++로 짜여진 소스는 MainSource/C++ 내부에 들어있으며
-C++을 Java로 변환한 소스는 MainSource/Java 내부에 들어있습니다.
-마지막으로 본 어플리케이션에 대한 소스는 app/java 내부에 들어있습니다.
+![Task Procedure](http://github.com/codertimo/SidewalkDetection/task.png)
 
-또한 본 Repository는 Android Stduio 에서 Init되었음을알립니다.
+Existing Sidewalk Detection Algorithms are based on Color Histogram. They find frames which color is gray and reconized those parts are the sidewalk. However if the sidewalk's color is not gray or has a lot of pattern, algorithm coudn't works.
+
+So we found the other way to detect sidewalks. It's **Line Detection** and **Vanishing Point**. Using those features, we could detect the sidewalk more efficiently.
+
+##Contributor
+
+###Helped by,
+
+Chanho Ok : utilFoever@gmail.com
+
+###Made By,
+
+Junseong Kim : codertimo@gmail.com
+
+Dongmin Kim : dmk98@naver.com
+
+#####Korea Digital Media HighSchool 13th Hacking&Defence
