@@ -1,0 +1,43 @@
+\section{Our Method}
+\label{sec:ourmethod}
+The main key of our algorithm is summarizing. We apply small patch and accumulated each result. Then we summarized the result and get results. It is quite effective than just do high-accuracy algorithm to each video's frame. We reduce much time by adopting this method to get data. It is economical for doing just little time-complexity procedure and summurizing. Thanks to linear regression analysis, we easily get total data from accumulated data and it's suit well for real-time processing for program lkie this.
+\newline\newline 
+Before we applied the algorithm, there were some steps to go through. We got the video frame by server. But, to use this video frame, the video frames must be converted to countours image. To minimize elapsed time, we applied Bilateral filter to exclude frames' unexpected noises. After applying filter, we applied Canny Detection to find countours of the images. Also, we used Probabilistic Hough Transform to get lines of the images. After that, we measured the relibality of the each line. And the most reliable two lines are results. But, two lines must be different from each other. So, we set equation of M like this.
+\begin{equation}
+\mathit{{M}_{ij} = {K}_{i} \times {m}_{j}} \quad\left(i=0,1 \right) \left(j=0,1 \right)
+\end{equation}
+Equation (1) simply represents the range of line's slope. M is the discriminant of the line that represent the upperbound and lowerbound of the should not be required image's slope. We set value like this. K is the weighted value and it would be defined as follow by given test.
+\begin{equation}{K}_{0} = 0.9,\quad{K}_{1} = 1.1\end{equation} 
+To set the slope's range, we set K as the constant value which make the candidate of slopes. As lines' slope is described as DMS notation width of range is defined by each line's slope. And there are more candidates of line where test line's slope is high. To get reasonable path, it is requrired that angle of slope is close to 90 degree. Lines are required to contrary to each other by it's direction and used to estimate the sidewalk's actual direction by finding vanishing point which made of each side's line that assumed to be sidewalk. 
+\newline If the two lines’ slope is too close, it means there are no need to consider these lines because two lines are almost one line in high probability. In other case, if some new line has come in the situation of it's slope is not included in existing line's range, we define the situation as worthwhile and check line's relibality more. We check the line's relibality by To check lines’ reliabilty, we only compared a new line with two lines that already exist. Since we wanted to check all lines’ reliablity, we apply this equation in all each input line. \newline
+In order to be reliable, it is required to be long and should be exclusive for each. Also, as we just need two line of result, the two result line's slope must be different. Now, we set new discriminant of slope like this. 
+\begin{equation}
+{N}_{ij} = {m}_{i} \times {p}_{j} \quad (i=0,1)(j=0,1)
+\end{equation}
+Discriminant (3) means range of slope that can admitted. Although the case that slope is not included in this range is better than the others, if the existing line's reliablity is hard to believe in only slope's value, We look for line's length also and set equation like this. The following situation is show as Figure 1. 
+\begin{equation}
+\mathit{S\left(l,m\right) = \sum_{i=0}^{n}{(\left(\beta{l}_{i}^{2} + D({m}_{i}\right) - (\beta{l}^{2} + D\left(m \right)))}^{2}}
+\end{equation}
+We get implict derivatives of this function by length to get minimum data of loss function's result. It's paramter are easily changed to improve its quailty, so we, at first, coordinate the parmater to suit with input data. Our purpose is to get minimum variance of line, to accomplish,  
+\begin{equation}
+\mathit{\frac{\partial S\left(l,m\right)}{\partial l} = \sum_{i=0}^{n}{\left(4{l}^{2}-4{{l}_{i}^{2}}\right)} = 0} 
+\end{equation}
+Firts, we get partial derivate of lines that can be drawn a conclusion of finding extreme value. As we found, in the equation, It is required that each sum of length's square is accrodance. Next, we get partial derviate of loss fuction by slope.
+\begin{equation}
+\mathit{\frac{\partial S\left(l,m\right)}{\partial m} = \sum_{i=0}^{n}{({D}^{\prime}(m)D(m) - \beta{l}^{2})} = 0}
+\end{equation}
+To arrange equation (5), equation (6), We convert them form that we can use. We extract this relations. Minimum price of loss function have to occured in such place that two variables are also reached to critical value.
+\begin{equation}
+\mathit{{D}^{\prime}(m)D(m) = \beta{l}^{2},\quad\sum_{i=0}^{n}{{l}_{i}^{2}} = n{l}^{2}}
+\end{equation}
+\begin{equation}
+\mathit{D(m)=\pm\sqrt{2}\sqrt{c+\beta{l}^{2}m}}
+\end{equation}
+By computing data with this function, We get some data of parameter in equation. Figure 3 shows an data set of input and output to get parameters. We compare line's reliablity by S(l,m) and it's been requried to be good method. To simply the method, we define the parameter c as 0, so The equation is simply by
+\begin{equation}
+\mathit{D(m)=\pm l\sqrt{\beta m}}
+\end{equation}
+When calculating this function, l which shows line's size is constant value and only m is dependant variable. After showing the definiation of function D and loss function S, we can now set the actual fuction that evaluate whether line's reliabilty is more good than another or not. This method is simple by indicating loss function in one sum.
+\begin{equation}
+\mathit{T(l,m) = ((\beta l^{2}+D(m)) - (\beta {l}_{avg}^{2}+D(m_{avg}))^{2}}
+\end{equation}	
