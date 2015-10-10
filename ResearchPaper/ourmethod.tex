@@ -1,6 +1,6 @@
 \section{Our Method}
 \label{sec:ourmethod}
-The main key of our algorithm is summarizing. We apply small patch and accumulated each result. Then we summarized the result and get results. It is quite effective than just do high-accuracy algorithm to each video's frame. We reduce much time by adopting this method to get data. It is economical for doing just little time-complexity procedure and summurizing. Thanks to linear regression analysis, we easily get total data from accumulated data and it's suit well for real-time processing for program lkie this.
+\NEW{The main key of our algorithm is summarizing. We apply small patch and accumulated each result. Then we summarized the result and get results. It is quite effective than just do high-accuracy algorithm to each video's frame. We reduce much time by adopting this method to get data. It is economical for doing just little time-complexity procedure and summurizing. Thanks to linear regression analysis, we easily get total data from accumulated data and it's suit well for real-time processing for program lkie this.
 \newline\newline 
 Before we applied the algorithm, there were some steps to go through. We got the video frame by server. But, to use this video frame, the video frames must be converted to countours image. To minimize elapsed time, we applied Bilateral filter to exclude frames' unexpected noises. After applying filter, we applied Canny Detection to find countours of the images. Also, we used Probabilistic Hough Transform to get lines of the images. After that, we measured the relibality of the each line. And the most reliable two lines are results. But, two lines must be different from each other. So, we set equation of M like this.
 \begin{equation}
@@ -40,4 +40,5 @@ By computing data with this function, We get some data of parameter in equation.
 When calculating this function, l which shows line's size is constant value and only m is dependant variable. After showing the definiation of function D and loss function S, we can now set the actual fuction that evaluate whether line's reliabilty is more good than another or not. This method is simple by indicating loss function in one sum.
 \begin{equation}
 \mathit{T(l,m) = ((\beta l^{2}+D(m)) - (\beta {l}_{avg}^{2}+D(m_{avg}))^{2}}
-\end{equation}	
+\end{equation}
+}
