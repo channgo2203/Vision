@@ -29,6 +29,7 @@ void LineMap::calLine() {
 		Canny(mRawImg, mContours, 200, 350);
 		vLines.clear();
 		HoughLinesP(mContours, vLines, 1, CV_PI / 180, 50, 50, 10);
+		compareLine();
 	}
 	catch (Exception e) {
 		printf("%s", e.msg);
@@ -84,37 +85,41 @@ Vec4f LineMap::getCurrentLine(Mat resMap) {
 	}
 
 	fitLine(Mat(vPoint), vCurrentLine, CV_DIST_L2, 0, 0.01, 0.01);
+
 	vPoint.clear();
 	return vCurrentLine;
 }
 
 void LineMap::compareLine() {
-	CompareableLine *CompareableLineList[10], *CompResLine[2];
+	vector<CompareableLine> cLineList, ResLine;
 
 	double dSumLineSize = 0, dSumCubeLineSize = 0;
 
-	for (size_t i = 0; i < vLines.size(); i++) CompareableLineList[i] = new CompareableLine(vLines[i]);
+	for (size_t i = 0; i < vLines.size(); i++) cLineList.push_back(CompareableLine(vLines[i]));
+	
 	for (size_t i = 0; i < vLines.size(); i++) {
-		dSumLineSize += (double)CompareableLineList[i]->getLine_size();
-		dSumCubeLineSize += pow(CompareableLineList[i]->getLine_size(), 2);
+		dSumLineSize += (double)cLineList[i].getLine_size();
+		dSumCubeLineSize += pow(cLineList[i].getLine_size(), 2);
 	}
 
 	CompareableLine::setAvgLineSize(dSumLineSize / vLines.size());
 	CompareableLine::setAvgCubeLineSize(dSumCubeLineSize / vLines.size());
 
-	CompResLine[0] = new CompareableLine(CompareableLineList[0]->getPoint());
-	CompResLine[1] = new CompareableLine(CompareableLineList[1]->getPoint());
-		
+	ResLine.push_back(cLineList[0]);
+	ResLine.push_back(cLineList[1]);
+
 	for (size_t i = 2; i < vLines.size(); i++) {
-		CompareableLineList[i]->calParams();
-		if (CompareableLineList[i]->getFunctionD(0) < max(CompResLine[0]->getFunctionD(CompareableLineList[i]->getSlope()), CompResLine[1]->getFunctionD(CompareableLineList[i]->getSlope())))
-			CompResLine[((CompResLine[0]->getFunctionD(CompareableLineList[i]->getSlope()) > CompResLine[1]->getFunctionD(CompareableLineList[i]->getSlope())) ? 0 : 1)] = CompareableLineList[i];
+		cLineList[i].calParams();
+		if (cLineList[i].getFunctionD(0) < max(ResLine[0].getFunctionD(cLineList[i].getSlope()), ResLine[1].getFunctionD(cLineList[i].getSlope())))
+			ResLine[ResLine[0].getFunctionD(cLineList[i].getSlope()) < ResLine[1].getFunctionD(cLineList[i].getSlope())]
 	}
 
-	vResLine[0] = CompResLine[0]->getPoint();
-	vResLine[1] = CompResLine[1]->getPoint();
+	imshow("res", mLineMap);
+
+	vResLine[0] = ResLine[0].getPoint();
+	vResLine[1] = ResLine[1].getPoint();
 }
 
 Mat LineMap::getLineMap() {
 	return mLineMap;
-}
+} 
