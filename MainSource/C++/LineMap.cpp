@@ -94,9 +94,7 @@ void LineMap::compareLine() {
 	vector<CompareableLine> cLineList, ResLine;
 
 	double dSumLineSize = 0, dSumCubeLineSize = 0;
-
 	for (size_t i = 0; i < vLines.size(); i++) cLineList.push_back(CompareableLine(vLines[i]));
-	
 	for (size_t i = 0; i < vLines.size(); i++) {
 		dSumLineSize += (double)cLineList[i].getLine_size();
 		dSumCubeLineSize += pow(cLineList[i].getLine_size(), 2);
@@ -110,8 +108,12 @@ void LineMap::compareLine() {
 
 	for (size_t i = 2; i < vLines.size(); i++) {
 		cLineList[i].calParams();
-		if (cLineList[i].getFunctionD(0) < max(ResLine[0].getFunctionD(cLineList[i].getSlope()), ResLine[1].getFunctionD(cLineList[i].getSlope())))
-			ResLine[ResLine[0].getFunctionD(cLineList[i].getSlope()) < ResLine[1].getFunctionD(cLineList[i].getSlope())]
+		if (ResLine[0].getFunctionS(ResLine[1].getSlope()) > min(cLineList[i].getFunctionS(ResLine[0].getSlope()), cLineList[i].getFunctionS(ResLine[1].getSlope()))) { // if the line's loss function is larger in case of change occur
+			bool flag = cLineList[i].getFunctionS(ResLine[0].getSlope()) < cLineList[i].getFunctionS(ResLine[1].getSlope()); // show the larger index
+			if (!flag) ResLine.pop_back(); // if index 0 is larger pop 1
+			else ResLine.erase(ResLine.begin);
+			ResLine.push_back(cLineList[i].getPoint());
+		}
 	}
 
 	imshow("res", mLineMap);
