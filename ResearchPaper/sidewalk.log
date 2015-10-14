@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.8.13)  13 OCT 2015 12:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.8.13)  13 OCT 2015 12:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -719,13 +719,13 @@ Package rerunfilecheck Info: File `sidewalk.brf' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 11204 strings out of 493091
- 169539 string characters out of 6138531
+ 11210 strings out of 493091
+ 169593 string characters out of 6138531
  320734 words of memory out of 5000000
  14275 multiletter control sequences out of 15000+600000
- 56667 words of font info for 188 fonts, out of 8000000 for 9000
+ 56927 words of font info for 192 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,51p,1106b,390s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,51p,1099b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
 {d:/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/texlive/2015/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2015/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2015/texmf-dist/fonts/type1
@@ -736,7 +736,7 @@ cmsy7.pfb><d:/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2015/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><d:/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on sidewalk.pdf (4 pages, 115554 bytes).
+Output written on sidewalk.pdf (4 pages, 115396 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream

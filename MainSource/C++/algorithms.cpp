@@ -8,7 +8,7 @@ void sendProc(int iAngleProtocol) {
 }
 
 int main() {
-	CvCapture*  cvCapture = cvCreateFileCapture("C:\\Users\\dongmin\\OneDrive\\Pictures\\Camera Roll\\20150621_194419.mp4");
+	CvCapture*  cvCapture = cvCreateFileCapture("C:\\Users\\dongmin\\OneDrive\\Pictures\\Camera Roll\\20150621_194350.mp4");
 	IplImage* iFrame;
 	if (cvCapture == nullptr) throw("file error!");
 	char c;
@@ -19,11 +19,11 @@ int main() {
 		if (!iFrame) break;
 		mImg = cvarrToMat(iFrame);
 		LineMap frame(mImg);
-		frame.calLine();
+		frame.calLine();	
 		frame.drawLine();
 		frame.compareCurrent(frame.getCurrentLine(frame.getLineMap()));
-		c = cvWaitKey(23);
-		if (c == 33) break;
+		c = cvWaitKey();
+		if (c == 27) break;
 	}
 
 	return 0;
