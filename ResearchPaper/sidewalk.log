@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.8.13)  13 OCT 2015 12:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.8.13)  17 OCT 2015 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -674,17 +674,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]) (./ourmethod.tex
 [2]
-Underfull \hbox (badness 1859) in paragraph at lines 44--44
+Underfull \hbox (badness 1859) in paragraph at lines 46--46
 \T1/ptm/m/n/9 (+20) The main key of our al-go-rithm is sum-ma-riz-ing. We
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
 
  []
 
 
-Underfull \hbox (badness 4156) in paragraph at lines 44--44
+Underfull \hbox (badness 4156) in paragraph at lines 46--46
 \T1/ptm/m/n/9 (+20) Before we ap-plied the al-go-rithm, there were some
  []
 
@@ -736,7 +736,7 @@ cmsy7.pfb><d:/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2015/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><d:/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on sidewalk.pdf (4 pages, 115396 bytes).
+Output written on sidewalk.pdf (4 pages, 115655 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
