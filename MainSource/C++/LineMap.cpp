@@ -1,16 +1,18 @@
 #include "LineMap.h"
 #include "CompareableLine.h"
 LineMap::LineMap(){}
-LineMap::~LineMap(){}
+LineMap::~LineMap(){
+	vLines.clear();
+	vResLine.clear();
+}
 
 LineMap::LineMap(Mat mImg) {
 	this->mRawImg = mImg;
-	this->dCurrentSlopeAvg = 0;
 	this->iAngleProtocol = 0;
 }
 
 void LineMap::setSmStack(Size sSize) {
-	smStack.create(sSize, CV_32FC1);
+	smStack = Mat(sSize, CV_8UC1, Scalar(0));
 }
 
 void LineMap::setLine() {
@@ -25,15 +27,27 @@ void LineMap::setLine() {
 	for (int i = 0; i < vLines.size(); i++) line(mLineMap, Point(vLines[i][0], vLines[i][1]), Point(vLines[i][2], vLines[i][3]), Scalar(255,255,255), 1);
 	compareLine();
 	for (int i = 0; i < 2; i++) line(smStack, Point(vResLine[i][0], vResLine[i][1]), Point(vResLine[i][2], vResLine[i][3]), Scalar(111), 3, 8);
+	imshow("TT", smStack);
 }
 
 void LineMap::compareCurrent() {
 	Vec4f vCurrentLine = calMapSlope(smStack);
-	double dTheta = atan2(vCurrentLine[1], vCurrentLine[0]) / CV_PI * 180;
-
+	double dTheta;
+	static int iStackcount = 1;
+	static double dCurrentSlopeAvg;
+	if (vCurrentLine[2] == 0) dTheta = 90;
+	else dTheta = -1 * atan(vCurrentLine[3] / vCurrentLine[2]) / CV_PI * 180.0;
+	if (dTheta < 0) dTheta += 180;
+	if (dCurrentSlopeAvg == 0) dCurrentSlopeAvg = dTheta;
+	printf("now : %.1f, Avg : %.1f\n",dTheta,dCurrentSlopeAvg);
 	if (dCurrentSlopeAvg == 0) {
 		dCurrentSlopeAvg = dTheta;
 		iStackcount = 1;
+	}
+	if (iStackcount % 20 == 0) {
+		setSmStack(Size(600, 400));
+		iStackcount = 1;
+		dCurrentSlopeAvg = dTheta;
 	}
 	else if (abs(dCurrentSlopeAvg - dTheta) > 20) {
 		callCornerExist();
@@ -46,14 +60,15 @@ void LineMap::compareCurrent() {
 			iAngleProtocol = (int)abs(dTheta - dCurrentSlopeAvg) / 5 + 5;
 		else
 			iAngleProtocol = (int)abs(dTheta - dCurrentSlopeAvg) / 5;
-	}	
+		dCurrentSlopeAvg = dTheta;
+		iStackcount = 1;
+	}
 	else {
 		dCurrentSlopeAvg *= iStackcount++;
 		dCurrentSlopeAvg += dTheta;
 		dCurrentSlopeAvg /= iStackcount;
 		iAngleProtocol = 0;
 	}
-	sendProc(iAngleProtocol);
 }
 
 void LineMap::sendProtocol() {
@@ -120,6 +135,8 @@ void LineMap::compareLine() {
 	
 	vResLine.push_back(ResLine[0]->getPoint());
 	vResLine.push_back(ResLine[1]->getPoint());
+
+	cLineList.clear();
 }
 
 Mat LineMap::getLineMap() {

@@ -4,7 +4,7 @@
 
 void sendProc(int);
 void sendProc(int iAngleProtocol) {
-	printf("%d\n", iAngleProtocol);
+	printf("receive : %d\n", iAngleProtocol);
 }
 
 int main() {
@@ -13,18 +13,20 @@ int main() {
 	if (cvCapture == nullptr) throw("file error!");
 	char c;
 	Mat mImg, mRaw;
-			
+	LineMap::setSmStack(Size(600,400));
+	LineMap *frame;
 	while (1) {
 		iFrame = cvQueryFrame(cvCapture);
 		if (!iFrame) break;
 		mRaw = cvarrToMat(iFrame);
 		resize(mRaw, mImg, Size(600, 400));
-		cvWaitKey();
-		LineMap::setSmStack(mImg.size());
-		LineMap frame(mImg);
-		frame.setLine();
-		frame.compareCurrent();
-		c = cvWaitKey(33);
+		imshow("t", mImg);
+		frame = new LineMap(mImg);
+		frame->setLine();
+		frame->compareCurrent();
+		frame->sendProtocol();
+		c = cvWaitKey(33);	
+			
 		if (c == 27) break;
 	}
 

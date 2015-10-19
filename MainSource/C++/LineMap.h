@@ -5,8 +5,6 @@
 class LineMap
 {
 private:
-	int iStackcount;
-	double dCurrentSlopeAvg;
 	double dNowSlope;
 	Mat mRawImg;
 	Mat mLineMap;
