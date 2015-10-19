@@ -4,16 +4,11 @@ CompareableLine::CompareableLine() {}
 CompareableLine::~CompareableLine() {}
 
 CompareableLine::CompareableLine(Vec4i vPoint) {
-	try {
-		this->vPoint = vPoint;
-		iLine_size = (int)pow(vPoint[0] - vPoint[2], 2) + (int)pow(vPoint[1] - vPoint[3], 2);
-		if (vPoint[2] == vPoint[0]) throw Exception();
-		dSlope = (double)(vPoint[3] - vPoint[1]) / (vPoint[2] - vPoint[0]);
-	}
-	catch (_exception e) {
-		dSlope = 100;
-		printf("%s", e.name);
-	}
+	this->vPoint = vPoint;
+	iLine_size = (int)pow(vPoint[0] - vPoint[2], 2) + (int)pow(vPoint[1] - vPoint[3], 2);
+	if (vPoint[2] == vPoint[0]) dSlope = 90;
+	dSlope = atan(-1 * (double)(vPoint[3] - vPoint[1]) / (vPoint[2] - vPoint[0])) * 180.0 / CV_PI;
+	if (dSlope < 0) dSlope += 180;
 }
 
 Vec4i CompareableLine::getPoint() {
@@ -25,12 +20,12 @@ int CompareableLine::getLine_size() {
 }
 
 double CompareableLine::getFunctionS(CompareableLine* ll) {
-	if (getFunctionD(dSlope) == 0) return 0x7fffffff-1;
-	return cdParameter_beta*(pow(this->iLine_size + ll->getLine_size(),2) - sdAvgCubeLineSize) - getFunctionD(ll->dSlope); // represent loss function of line which involves probablity of loss.
+	if (getFunctionD(ll->getSlope()) == 0) return -10000000;
+	return cdParameter_beta*(pow(this->iLine_size + ll->getLine_size(),2) - sdAvgCubeLineSize) - getFunctionD(ll->getSlope()); // represent loss function of line which involves probablity of loss.
 }
 
 double CompareableLine::getFunctionD(double dSlope) {
-	if (sdDeniedMaxGap * this->dSlope < dSlope || sdDeniedMinGap * this->dSlope > dSlope) return sqrt(sdAvgCubeLineSize * abs(this->dSlope - dSlope));
+	if (10 + this->dSlope < dSlope || this->dSlope - 10 > dSlope) return sqrt(sdAvgCubeLineSize * abs(this->dSlope + dSlope - 2 * sdMapDegree));
 	return 0;
 }
 
@@ -58,5 +53,10 @@ CompareableLine CompareableLine::operator=(const CompareableLine& p) {
 	return p;
 }
 
+void CompareableLine::setNowDegree(double dNowDegree) {
+	sdMapDegree = dNowDegree;
+}
+
 double CompareableLine::sdAvgLineSize;
 double CompareableLine::sdAvgCubeLineSize;
+double CompareableLine::sdMapDegree;

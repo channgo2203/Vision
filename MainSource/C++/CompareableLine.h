@@ -13,6 +13,7 @@ private:
 	double dSlope;
 	static double sdAvgLineSize;
 	static double sdAvgCubeLineSize;
+	static double sdMapDegree;
 	Vec4i vPoint;
 public:
 	CompareableLine();
@@ -27,6 +28,7 @@ public:
 	double getSlope();
 	void static setAvgLineSize(double);
 	void static setAvgCubeLineSize(double);
+	void static setNowDegree(double);
 	double static getAvgLineSize();
 	bool calParams();
 };

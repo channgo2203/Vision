@@ -12,17 +12,19 @@ int main() {
 	IplImage* iFrame;
 	if (cvCapture == nullptr) throw("file error!");
 	char c;
-	Mat mImg;
-	
+	Mat mImg, mRaw;
+			
 	while (1) {
 		iFrame = cvQueryFrame(cvCapture);
 		if (!iFrame) break;
-		mImg = cvarrToMat(iFrame);
+		mRaw = cvarrToMat(iFrame);
+		resize(mRaw, mImg, Size(600, 400));
+		cvWaitKey();
+		LineMap::setSmStack(mImg.size());
 		LineMap frame(mImg);
-		frame.calLine();	
-		frame.drawLine();
-		frame.compareCurrent(frame.getCurrentLine(frame.getLineMap()));
-		c = cvWaitKey();
+		frame.setLine();
+		frame.compareCurrent();
+		c = cvWaitKey(33);
 		if (c == 27) break;
 	}
 
