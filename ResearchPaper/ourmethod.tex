@@ -42,5 +42,13 @@ When calculating this function, l which shows line's size is constant value and 
 \mathit{T(l,m) = ((\beta l^{2}+D(m)) - (\beta {l}_{avg}^{2}+D(m_{avg}))^{2}}
 \end{equation}
 
-In short, we search the slope of all lines by using linear regression method. By adjusting ours, we can develop useful loss function between two lines. This function's parameter are needed to be set before the function is called. But, the parameter's are calculated by linear regression method. Although There are some necessary to be changed by image's width and height, we resize it's size.
+In short, we search the slope of all lines by using linear regression method. By adjusting ours, we can develop useful loss function between two lines. This function's parameter are needed to be set before the function is called. But, the parameter's are calculated by linear regression method. Although There are some necessary to be changed by image's width and height, we resize it's size.\quad
+ 
+After applying method that calculate line's reliability with tendency of image, we use linear regression to reduce some trivial errors and simple vibration of user. We use OLS(Ordinary Least Square) method to get line's tendency. In this process, we can get our direction that can be assumed by our previous path model and know whether our path is fit in sidewalk. 
+
+\begin{equation}
+\mathit{O(n^2)}
+\end{equation}
+
+The algorithm's time complexity is mostly influenced by situation which affect linear vector's size. By using some regression method, we just obtain it's time complexity mostly manufactured by which regression models to take. If we choose Theil-Sen Estimator or Gradient Descendant and so on that refers to more complicated regression model, we have to give up getting real-time processing. Thus, we choose just simple and strong model that compute our algorithm.
 }
