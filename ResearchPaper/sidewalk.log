@@ -1,12 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.8.13)  19 OCT 2015 22:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.10)  25 OCT 2015 19:49
 entering extended mode
- restricted \write18 enabled.
- %&-line parsing enabled.
-**./sidewalk.tex
-(./sidewalk.tex
+**sidewalk.tex
+(sidewalk.tex
 LaTeX2e <2015/01/01> patch level 2
-Babel <3.9m> and hyphenation patterns for 79 languages loaded.
-(./egpubl.cls
+Babel <3.9m> and hyphenation patterns for 69 languages loaded.
+(egpubl.cls
 Document Class: egpubl 2008/11/27 Document Style for EG Publications v3.50
 \c@table=\count79
 \c@figure=\count80
@@ -20,38 +18,36 @@ Document Class: egpubl 2008/11/27 Document Style for EG Publications v3.50
 \bibhang=\skip41
 \every@verbatim=\toks14
 \verbatim@line=\toks15
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
-) (./sidewalk.lbl)
-\openout9 = `sidewalk.lbl'.
-
 )
-(d:/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+(sidewalk.lbl))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(d:/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(d:/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-(d:/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(d:/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
 
-(d:/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count88
@@ -59,16 +55,16 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen102
 \Gin@req@width=\dimen103
 )
-(d:/texlive/2015/texmf-dist/tex/latex/hyperref/hyperref.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
 
 
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
 Package hobsub Info: Skipping package `ltxcmds' (already loaded).
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
@@ -98,7 +94,7 @@ Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
 Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
@@ -106,25 +102,25 @@ Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-(d:/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(d:/texlive/2015/texmf-dist/tex/latex/oberdiek/auxhook.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-(d:/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen104
 \Hy@linkcounter=\count89
 \Hy@pagecounter=\count90
 
-(d:/texlive/2015/texmf-dist/tex/latex/hyperref/pd1enc.def
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count91
 
-(d:/texlive/2015/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 4319.
@@ -137,17 +133,17 @@ Package hyperref Info: Backreferencing ON on input line 4461.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks OFF on input line 4694.
 
-(d:/texlive/2015/texmf-dist/tex/latex/hyperref/backref.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\backref.sty"
 Package: backref 2012/07/25 v1.38 Bibliographical back referencing
 
-(d:/texlive/2015/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
 \c@Hy@tempcnt=\count92
 
-(d:/texlive/2015/texmf-dist/tex/latex/url/url.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -172,15 +168,15 @@ LaTeX Info: Redefining \pageref on input line 6369.
 
 Package hyperref Message: Driver: hpdftex.
 
-(d:/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count97
 \c@bookmark@seq@number=\count98
 \Hy@SectionHShift=\skip42
 )
-(d:/texlive/2015/texmf-dist/tex/latex/base/t1enc.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.sty"
 Package: t1enc 1994/06/01 Standard LaTeX package
-) (./dfadobe.sty
+) (dfadobe.sty
 Package: dfadobe 2000/03/05 v1.4 T1-encoded Times (except symbols), Courier, He
 lvetica (at 90\%) + math package
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 14.
@@ -211,40 +207,40 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 20.
 
-(./dfT1ptm.fd
+(dfT1ptm.fd
 File: dfT1ptm.fd 2000/03/05 DF - Fontinst v1.6 font definitions for T1/ptm.
-) (./dfT1phv.fd
+) (dfT1phv.fd
 File: dfT1phv.fd 1997/12/02 Fontinst v1.6 font definitions for T1/phv scaled to
  90\%.
-) (./dfT1pcr.fd
+) (dfT1pcr.fd
 File: dfT1pcr.fd 2000/03/05 DF - Fontinst v1.6 font definitions for T1/pcr.
-)) (./egweblnk.sty
+)) (egweblnk.sty
 Package: egweblnk 2004/10/29 v2.2 DF's support for http web links in class egpu
 bl
 )
-(d:/texlive/2015/texmf-dist/tex/latex/cite/cite.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\cite\cite.sty"
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
-) (./mypackages.tex
-(d:/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (mypackages.tex
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(d:/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-(d:/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks17
 \ex@=\dimen108
 ))
-(d:/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen109
 )
-(d:/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count99
@@ -285,11 +281,11 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-(d:/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2015/09/17 v3.3-111 Customizing captions (AR)
 
-(d:/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2015/09/20 v1.7-115 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
 \captionmargin=\dimen117
 \captionmargin@=\dimen118
@@ -314,42 +310,42 @@ size \textbf {#1:} \reset@font \itshape #2\par \else \hbox to\hsize {\hfil \box
  \@tempboxa \hfil } \fi \vskip 6pt .
 \c@ContinuedFloat=\count111
 Package caption Info: hyperref package is loaded.
-) (d:/texlive/2015/texmf-dist/tex/latex/graphics/color.sty
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
 Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 
-(d:/texlive/2015/texmf-dist/tex/latex/latexconfig/color.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
 )
-(d:/texlive/2015/texmf-dist/tex/latex/datetime/datetime.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\datetime\datetime.sty"
 Package: datetime 2015/03/20 v2.60 Date Time Package
 
-(d:/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count112
 )
-(d:/texlive/2015/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fmtcount\fmtcount.sty"
 Package: fmtcount 2015/05/05 v3.01
 
-(d:/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(d:/texlive/2015/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(d:/texlive/2015/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(d:/texlive/2015/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
 \XKV@toks=\toks22
 \XKV@tempa@toks=\toks23
 )
 \XKV@depth=\count113
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(d:/texlive/2015/texmf-dist/tex/latex/fmtcount/fcprefix.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fmtcount\fcprefix.sty"
 Package: fcprefix 2012/09/28
 
-(d:/texlive/2015/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fmtcount\fcnumparser.sty"
 Package: fcnumparser 2012/09/28
 \fc@digit@counter=\count114
 ))
@@ -363,10 +359,10 @@ Package: fcnumparser 2012/09/28
 \@DT@loopN=\count122
 \@DT@X=\count123
 
-(d:/texlive/2015/texmf-dist/tex/latex/fmtcount/fc-english.def
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fmtcount\fc-english.def"
 File: fc-english.def 2013/08/17
 ))
-(d:/texlive/2015/texmf-dist/tex/latex/datetime/datetime-defaults.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\datetime\datetime-defaults.sty"
 Package: datetime-defaults 2013/09/10
 )
 \@day=\count124
@@ -389,20 +385,19 @@ put line 308.
 LaTeX Info: Redefining \today on input line 736.
 \dt@a=\toks24
 \dt@b=\toks25
-)
-(d:/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup6
 \symAMSb=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(d:/texlive/2015/texmf-dist/tex/latex/tools/bm.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\bm.sty"
 Package: bm 2014/10/28 v1.1c Bold Symbol Support (DPC/FMi)
 \symboldsymbols=\mathgroup8
 LaTeX Info: Redefining \bm on input line 207.
 )
-(d:/texlive/2015/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
 \wrapoverhang=\dimen124
 \WF@size=\dimen125
 \c@WF@wrappedlines=\count139
@@ -410,7 +405,7 @@ LaTeX Info: Redefining \bm on input line 207.
 \WF@everypar=\toks26
 Package: wrapfig 2003/01/31  v 3.6
 )
-(d:/texlive/2015/texmf-dist/tex/latex/subfig/subfig.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfig\subfig.sty"
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
 
@@ -448,7 +443,7 @@ Package subfig Warning: Your document class has a bad definition
 \c@lotdepth=\count146
 \sf@top=\skip51
 \sf@bottom=\skip52
-) (d:/texlive/2015/texmf-dist/tex/latex/microtype/microtype.sty
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\microtype.sty"
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
 \MT@toks=\toks27
 \MT@count=\count147
@@ -457,7 +452,7 @@ LaTeX Info: Redefining \textls on input line 766.
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
 \MT@listname@count=\count148
 
-(d:/texlive/2015/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\microtype-pdftex.def"
 File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 915.
@@ -466,23 +461,23 @@ LaTeX Info: Redefining \lslig on input line 915.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(d:/texlive/2015/texmf-dist/tex/latex/microtype/microtype.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\microtype.cfg"
 File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
 ))
-(d:/texlive/2015/texmf-dist/tex/latex/units/units.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\units\units.sty"
 Package: units 1998/08/04 v0.9b Typesetting units
 
-(d:/texlive/2015/texmf-dist/tex/latex/units/nicefrac.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\units\nicefrac.sty"
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
 \L@UnitsRaiseDisplaystyle=\skip54
 \L@UnitsRaiseTextstyle=\skip55
 \L@UnitsRaiseScriptstyle=\skip56
 ))
-(d:/texlive/2015/texmf-dist/tex/latex/algorithms/algorithm.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithms\algorithm.sty"
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
-(d:/texlive/2015/texmf-dist/tex/latex/float/float.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count149
 \float@exts=\toks28
@@ -493,10 +488,10 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@every@algorithm=\toks30
 \c@algorithm=\count150
 )
-(d:/texlive/2015/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty"
 Package: algpseudocode 
 
-(d:/texlive/2015/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\algorithmicx\algorithmicx.sty"
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
@@ -512,14 +507,13 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip59
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (d:/texlive/2015/texmf-dist/tex/latex/was/gensymb.sty
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\was\gensymb.sty"
 Package: gensymb 2003/07/02 v1.0 (WaS)
 )
 Package color Info: Redefining color cyan on input line 55.
 Package color Info: Redefining color magenta on input line 58.
-) (./sidewalk.aux)
-\openout1 = `sidewalk.aux'.
-
+)
+(sidewalk.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
 LaTeX Font Info:    ... okay on input line 86.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
@@ -535,7 +529,7 @@ LaTeX Font Info:    ... okay on input line 86.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
 LaTeX Font Info:    ... okay on input line 86.
 
-(d:/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count158
 \scratchdimen=\dimen128
@@ -548,21 +542,7 @@ LaTeX Font Info:    ... okay on input line 86.
 \MPnumerator=\count162
 \makeMPintoPDFobject=\count163
 \everyMPtoPDFconversion=\toks32
-) (d:/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(d:/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(d:/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 \AtBeginShipoutBox=\box32
 
 
@@ -570,10 +550,10 @@ Package hyperref Warning: Height of page (\paperheight) is invalid (0.0pt),
 (hyperref)                using 11in.
 
 Package hyperref Info: Link coloring ON on input line 86.
-(d:/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
-(d:/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count164
@@ -597,7 +577,7 @@ Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 
-(d:/texlive/2015/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-ptm.cfg"
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 LaTeX Info: Redefining \celsius on input line 86.
@@ -616,7 +596,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 89.
 LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 89
 .
-(d:/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptmcm.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptmcm.fd"
 File: ot1ptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
 )
 Package microtype Info: Loading generic settings for font family
@@ -626,36 +606,37 @@ Package microtype Info: Loading generic settings for font family
 LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 89
 .
 
-(d:/texlive/2015/texmf-dist/tex/latex/psnfss/omlptmcm.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omlptmcm.fd"
 File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+psycm on input line 89
 .
 
-(d:/texlive/2015/texmf-dist/tex/latex/psnfss/omxpsycm.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omxpsycm.fd"
 File: omxpsycm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/psycm.
 )
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 89.
 
-(d:/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Try loading font information for U+msa on input line 89.
 
-(d:/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-(d:/texlive/2015/texmf-dist/tex/latex/microtype/mt-msa.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 89.
 
-(d:/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(d:/texlive/2015/texmf-dist/tex/latex/microtype/mt-msb.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msb.cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) (./abstract.tex
+)
+(abstract.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
 
@@ -663,17 +644,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
  []
 
-) (./introduction.tex) (./relatedwork.tex
+) (introduction.tex) (relatedwork.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [1{d:/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [1{C:/Users/utilForever/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]) (./ourmethod.tex
-[2]
+])
+(ourmethod.tex [2]
 Underfull \hbox (badness 1859) in paragraph at lines 54--54
 \T1/ptm/m/n/9 (+20) The main key of our al-go-rithm is sum-ma-riz-ing. We
  []
@@ -688,58 +669,39 @@ Underfull \hbox (badness 4156) in paragraph at lines 54--54
 \T1/ptm/m/n/9 (+20) Before we ap-plied the al-go-rithm, there were some
  []
 
-[3]) (./results.tex) (./conclusion.tex) (./sidewalk.bbl (./sidewalk.brf)
-\tf@brf=\write3
-\openout3 = `sidewalk.brf'.
-
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 \end{thebibliography}
-                         
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-)
+[3]) (results.tex) (conclusion.tex) (sidewalk.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
  [4
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
- (./sidewalk.aux)
+ (sidewalk.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
-Package rerunfilecheck Info: File `sidewalk.brf' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 101.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 11211 strings out of 493091
- 169606 string characters out of 6138531
- 320734 words of memory out of 5000000
- 14275 multiletter control sequences out of 15000+600000
- 56927 words of font info for 192 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 38i,11n,51p,1099b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
-{d:/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2015/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2015/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><d:/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy6.pfb><d:/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy7.pfb><d:/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-<d:/texlive/2015/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><d:/texlive/2015/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2015/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb><d:/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
-8a.pfb>
-Output written on sidewalk.pdf (4 pages, 116852 bytes).
+ 11106 strings out of 493673
+ 168758 string characters out of 3141511
+ 317987 words of memory out of 3000000
+ 14045 multiletter control sequences out of 15000+200000
+ 56927 words of font info for 192 fonts, out of 3000000 for 9000
+ 1025 hyphenation exceptions out of 8191
+ 38i,11n,51p,1098b,398s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/ur
+w/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on sidewalk.pdf (4 pages, 127827 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 84 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
  29697 words of extra memory for PDF output out of 29859 (max. 10000000)
 
