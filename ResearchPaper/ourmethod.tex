@@ -1,26 +1,29 @@
 \section{Our Method}
 \label{sec:ourmethod}
-\NEW{The main key of our algorithm is summarizing. We apply small patch and accumulated each result. Then we summarized the result and get results. It is quite effective than just do high-accuracy algorithm to each video's frame. We reduce much time by adopting this method to get data. It is economical for doing just little time-complexity procedure and summarizing. Thanks to linear regression analysis, we easily get total data from accumulated data and it's suit well for real-time processing for program like this.
+The main key of our algorithm is summarizing. We apply small patch and accumulated each result. Then we summarized the result and get results. It is quite effective than just do high-accuracy algorithm to each video's frame. We reduce much time by adopting this method to get data. It is economical for doing just little time-complexity procedure and summarizing. Thanks to linear regression analysis, we easily get total data from accumulated one and it's suit well for real-time processing such that program like this.
 \newline\newline 
-Before we applied the algorithm, there were some steps to go through. We got the video frame by server. But, to use this video frame, the video frames must be converted to contours image. To minimize elapsed time, we applied Bilateral filter to exclude frames' unexpected noises. After applying it, we applied Canny Detection to find contours of the images. Also, we used Probabilistic Hough Transform to get lines of the images. After that, we measured the reliability of each line. And the most reliable two lines are results. But, two lines must be different from each other. So, we set equation of M like this.
+Before we applied the algorithm, there were some steps to go through. We got the video frame by server. But, to use this video frame, the video frames must be converted to contours image. In order to minimize elapsed time, we applied Bilateral filter to exclude frames' unexpected noises. After applying it, we applied Canny Detection to find contours of the images. Also, we used Probabilistic Hough Transform to get lines of the images. After that, we measured the reliability of each line. And the most reliable two lines are results. But, two lines must be different from each other. So, we set equation of M like this.
 \begin{equation}
-\mathit{{M}_{ij} = {K}_{i} \times {m}_{j}} \quad\left(i=0,1 \right) \left(j=0,1 \right)
+\mathit{{M}_{ij} = {K}_{i} + {m}_{j}} \quad\left(i=0,1 \right) \left(j=0,1 \right)
 \end{equation}
-Equation (1) simply represents the range of line's slope. M is the discriminant of the line that represent the upper-bound and lower-bound of the should not be required image's slope. We set value like this. K is the weighted value and it would be defined as follow by given test.
-\begin{equation}{K}_{0} = 0.9,\quad{K}_{1} = 1.1\end{equation} 
+Equation (1) simply represents the range of line's slope. M is the discriminant of line that represent the upper-bound and lower-bound of the should not be required image's slope. We set value like this. K is the weighted value and it would be defined as follow by given test. As we calculate line as our track, we use DMS(Degree-Minute-Second) notation rather than using radian.
+\begin{equation}{K}_{0} = 10,\quad{K}_{1} = -10\end{equation} 
 To set the slope's range, we set K as the constant value which make the candidate of slopes. As lines' slope is described as DMS notation width of range is defined by each line's slope. And there are more candidates of line where test line's slope is high. To get reasonable path, it is required that angle of slope is close to 90 degree. Lines are required to contrary with each other by it's direction and used to estimate the sidewalk's actual way by finding vanishing point which made of each side's line that assumed to be sidewalk. 
-\newline If the two lines’ slope is too close, it means there are no need to consider these lines because they are almost one line in high probability. In other case, if some new line has come in the situation of it's slope is not included in existing line's range, we define the situation as worthwhile and check line's reliability more. We check line by checking lines’ responsibility. We only compared a new line with two lines that already exist. Since we wanted to check all lines’ reliability, we apply this equation in all each input line. \newline
-In order to be reliable, it is required to be long and should be exclusive for each. Also, as we just need result that involves two line which it's slope must be exclusive. Now, we set new discriminant of slope like this. 
+
+If slope of two lines are too close, it means there are no need to consider these lines because they are almost one line in high probability. Else, if some new line has come in the situation of it's slope is not included in existing line's range, we define the situation as worthwhile and check line's reliability more. We check line by checking lines’ responsibility. We only compared a new line with two lines that already exist. Since we wanted to check all lines’ reliability, we apply this equation in all each input line. \newline
+In order to be reliable, it is required to be long and should be exclusive for each. Also, as we just need result that involves two line which it's slope must be exclusive.
+
+Also, we suggest that input image's tendency are likely to refer sidewalk's border. So, we imply some linear regression method that contains two variables, the slope and length.
+The result of algorithm is pair of lines. So, we need to convert line's reliability not only of them, but with some other line. To give them more accuracy, we set some adopted parameter and evaluated them. Now we set the loss function of two line.
 \begin{equation}
-{N}_{ij} = {m}_{i} \times {p}_{j} \quad (i=0,1)(j=0,1)
+\mathit{S(\beta_{0},\beta_{1}) = \sum_{i=0}^{n}{\sum_{j=0}^{n}{\beta_{0}((l_{i}+l_{j})^{2} - l) + \beta_{1}D(m_i,m_j)}}}
 \end{equation}
-Discriminant (3) means range of slope that can admitted. Although the case that slope is not included in this range is better than the others, if the existing line's reliability is hard to believe in only slope's value, We look for line's length also and set equation like this. The following situation is show as Figure 1. 
+In constructing loss function, we adopt linear regression method. We get implicit derivatives of this function by weight parameter that concerning length factor to get minimum data of loss function's result. It's parameter are easily changed to improve its quality, so we, at first, coordinate the parameter to suit with input data.
 \begin{equation}
-\mathit{S\left(l,m\right) = \sum_{i=0}^{n}{(\left(\beta{l}_{i}^{2} + D({m}_{i}\right) - (\beta{l}^{2} + D\left(m \right)))}^{2}}
+\mathit{\frac{\partial S(\beta_{0},\beta_{1})}{\partial \beta_{0}} = \sum_{i=0}^{n}{\sum_{j=0}^{n}{(l_{i} + l_{j})^{2} - l}} = 0} 
 \end{equation}
-We get implicit derivatives of this function by length to get minimum data of loss function's result. It's parameter are easily changed to improve its quality, so we, at first, coordinate the parameter to suit with input data. Our purpose is to get minimum variance of line, to accomplish,  
 \begin{equation}
-\mathit{\frac{\partial S\left(l,m\right)}{\partial l} = \sum_{i=0}^{n}{\left(4{l}^{2}-4{{l}_{i}^{2}}\right)} = 0} 
+\mathit{\sum_{i=0}^{n}{\sum_{j=0}^{n}{(l_{i} + l_{j})^{2}}} = ln^{2}}
 \end{equation}
 First, we get partial derivate of lines that can be drawn a conclusion of finding extreme value. As we found, in the equation, It is required that each sum of length's square is accordance. Next, we get partial derivate of loss function by slope.
 \begin{equation}
@@ -51,4 +54,3 @@ After applying method that calculate line's reliability with tendency of image, 
 \end{equation}
 
 The algorithm's time complexity is mostly influenced by situation which affect linear vector's size. By using some regression method, we just obtain it's time complexity mostly manufactured by which regression models to take. If we choose Theil-Sen Estimator or Gradient Descendant and so on that refers to more complicated regression model, we have to give up getting real-time processing. Thus, we choose just simple and strong model that compute our algorithm.
-}
