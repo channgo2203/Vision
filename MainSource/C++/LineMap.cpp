@@ -83,7 +83,8 @@ void LineMap::callPedestrianOutofdirection() {
 	printf("Pedestrian Out of direction!\n");
 }
 
-Vec4f LineMap::calMapSlope(Mat resMap) {
+Vec4f LineMap::calMapSlope(Mat resMap)
+{
 	std::vector<Point> vPoint;
 	Vec4f vCurrentLine;
 
@@ -99,7 +100,7 @@ Vec4f LineMap::calMapSlope(Mat resMap) {
 	return vCurrentLine;
 }
 
-void LineMap::compareLine() {	
+void LineMap::compareLine() {
 	CompareableLine* ResLine[2];
 	vector<CompareableLine*> cLineList;
 	
