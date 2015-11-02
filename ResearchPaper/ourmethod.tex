@@ -10,7 +10,7 @@ Equation (1) simply represents the range of line's slope. M is the discriminant 
 \begin{equation}{K}_{0} = 10,\quad{K}_{1} = -10\end{equation} 
 To set the slope's range, we set K as the constant value which make the candidate of slopes. As lines' slope is described as DMS notation width of range is defined by each line's slope. And there are more candidates of line where test line's slope is high. To get reasonable path, it is required that angle of slope is close to 90 degree. Lines are required to contrary with each other by it's direction and used to estimate the sidewalk's actual way by finding vanishing point which made of each side's line that assumed to be sidewalk. 
 
-If slope of two lines are too close, it means there are no need to consider these lines because they are almost one line in high probability. Else, if some new line has come in the situation of it's slope is not included in existing line's range, we define the situation as worthwhile and check line's reliability more. We check line by checking lines’ responsibility. We only compared a new line with two lines that already exist. Since we wanted to check all lines’ reliability, we apply this equation in all each input line. \newline
+If slope of two lines are too close, it means there are no need to consider these lines because they are almost one line in high probability. Else, if some new line has come in the situation of it's slope is not included in existing line's range, we define the situation as worthwhile and check line's reliability more. We check line by checking it's responsibility. We only compared a new line with two lines that already exist. Since we wanted to check all reliability, we apply this equation in all each input line. \newline
 In order to be reliable, it is required to be long and should be exclusive for each. Also, as we just need result that involves two line which it's slope must be exclusive.
 
 Also, we suggest that input image's tendency are likely to refer sidewalk's border. So, we imply some linear regression method that contains two variables, the slope and length.
@@ -19,9 +19,9 @@ The result of algorithm is pair of lines. So, we need to convert line's reliabil
 \mathit{A_{ij} = \beta((l_{i}+l_{j})^{2} - l) +(1-\beta)D(m_i,m_j)}
 \end{equation}
 \begin{equation}
-\mathit{S(\beta) =\sigma(A_{ij})}
+\mathit{S(\beta) =Var(A_{ij})}
 \end{equation}
-In constructing loss function, there are some need to get high level of standard deviation. If algorithm's result are correct, it's mount should be aroused. Also, we adopt linear regression method. We get implicit derivatives of this function by weight parameter that concerning length factor to get minimum data of loss function's result. It's parameter are easily changed to improve its quality, so we, at first, coordinate the parameter to suit with input data. So se set the P as average of matrix A.
+In constructing loss function, we calculate matrix's variance. If algorithm's result are correct, it's mount should be aroused. Also, we adopt linear regression method. We get implicit derivatives of this function by weight parameter that concerning length factor to get minimum data of loss function's result. It's parameter are easily changed to improve its quality, so we, at first, coordinate the parameter to suit with input data. So se set the P as average of matrix A.
 \begin{equation}
 \mathit{P = \frac{\sum_{i=0}^{n}{\sum_{j=0}^{n}{A_{ij}}}}{n^{2}}}
 \end{equation}
@@ -39,10 +39,8 @@ Now, we get implicit derivative of S by parameter. And variables that x, y, X, Y
 \begin{equation}
 \mathit{X=\frac{\sum_{i=0}^{n}{\sum_{j=0}^{n}}{x}}{n^{2}},\quad Y=\frac{\sum_{i=0}^{n}{\sum_{j=0}^{n}{y}}}{n^{2}}}
 \end{equation}
-Equation (7) present implicit derivative of loss function. To get critical value of it, we can set parameter as related to input data. After calculating it, we can finally set the loss function. 
-\begin{equation}
-\mathit{\beta = \frac{2Y-2y}{x^2+x-2X+2Y}}
-\end{equation}
+Equation (7) present implicit derivative of loss function. To get critical value of it, we can set parameter as related to input data only. And if needed, we can change parameter to get more quality.  After calculating it, we can finally set the loss function. 
+
 Now, we should define function D to get result of S. While D get two function as variable, we can assume that two line's average angle is close to pedestrian's direction and result of linear regression method. So we define function D as this form.
 \begin{equation}
 \mathit{D(m_{i},m_{j}) = |m_i + m_j - 2 *m_{avg}|}
@@ -55,4 +53,7 @@ After applying method that calculate line's reliability with tendency of image, 
 \mathit{O(n^2)}
 \end{equation}
 
-The algorithm's time complexity is mostly influenced by situation which affect linear vector's size. By using some regression method, we just obtain it's time complexity mostly manufactured by which regression models to take. If we choose Theil-Sen Estimator or Gradient Descendant and so on that refers to more complicated regression model, we have to give up getting real-time processing. Thus, we choose just simple and strong model that compute our algorithm.
+The algorithm's ti	me complexity is mostly influenced by situation which affect linear vector's size. By using some regression method, we just obtain it's time complexity mostly manufactured by which regression models to take. If we choose Theil-Sen Estimator or Gradient Descendant and so on that refers to more complicated regression model, we have to give up getting real-time processing. Thus, we choose just simple and strong model that compute our algorithm.
+
+In real-time detection, there have presented an some un-known situation that can damage our result. So, we finally use some linear regression method in combination of direction and confidence of each result. Adjusting this method, we assure that result show the direction of frame. 
+There are some point that accuracy and performance time of algorithm needed to be compromised. Especially in real-time processing, performance time must be reduced to get meaningful result. So, there are many ways to deal with such that problems. But, we suggested that it is better to use simple algorithm and integrate with regression or some method is more efficient than using complex algorithm structure to define each frame. It is more economical and change it's elapsed-time more easily and suitable.
