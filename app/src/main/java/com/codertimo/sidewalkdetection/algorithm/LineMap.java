@@ -105,7 +105,6 @@ public class LineMap {
 
         mLines.create(mRawImg.size(), CvType.CV_32FC1);
 
-
         /**
          * 이미지 출력하는 부분인데...
          * 이건 어떻게 할건지 논의 해야 할듯
@@ -148,12 +147,15 @@ public class LineMap {
         if(dNowSlope < 0)
             dNowSlope += 180;
 
+
         /**
-         * 도데체 이게 뭐하는 함수......
+         * 그래서 이걸로 바꿈 ;;;;
+         * 동민아 그렇게 살면 안된단다;;;;
          */
-//        CompareableLine::setAvgLineSize(dSumLineSize / vLines.size());
-//        CompareableLine::setAvgCubeLineSize(dSumCubeLineSize / vLines.size());
-//        CompareableLine::setNowDegree(dNowSlope);
+        SWDUtil.sdAvgLineSize = dSumLineSize / vLines.size();
+        SWDUtil.sdAvgCubeLineSize = dSumCubeLineSize / vLines.size();
+        SWDUtil.sdMapDegree = dNowSlope;
+
 
         ResLine[0] = cLineList.get(0);
         ResLine[1] = cLineList.get(1);
@@ -193,6 +195,12 @@ public class LineMap {
 
         for(int y=0;y<resMap.size().height; y++)
         {
+
+            /**
+             * uchar로 변환하는거 못하겠으니 이건 너가 짜센 ㅇㅇ
+             * ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+             */
+
             //uchar* ptr = resMap.ptr<uchar>(y);
             for(int x=0;x<resMap.size().width;x++)
             {

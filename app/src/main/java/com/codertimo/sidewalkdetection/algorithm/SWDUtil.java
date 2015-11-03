@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class SWDUtil {
 
+    public static double sdAvgLineSize = 0;
+    public static double sdAvgCubeLineSize = 0;
+    public static double sdMapDegree = 0;
+
     public static List<Vec4i> MatToVec4is (Mat lines)
     {
         List<Vec4i> vectors = new ArrayList<>();
@@ -62,13 +66,20 @@ public class SWDUtil {
         return mat;
     }
 
+
     public static Mat PointsToMat(List<Point> lines)
     {
         Mat mat = new Mat();
         mat.create(1,lines.size(),CvType.CV_8UC1);
+
+        /**
+         * List<Point>를 Mat로 전환하는 코드좀 짜주센 ㅇㅇㅇ;;;;
+         */
+
         //-------------------------------------//
         //List<Point> to Mat
         //------------------------------------//
+
         return mat;
     }
 
