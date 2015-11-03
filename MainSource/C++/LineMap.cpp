@@ -35,11 +35,14 @@ void LineMap::compareCurrent() {
 	double dTheta;
 	static int iStackcount = 1;
 	static double dCurrentSlopeAvg;
+
 	if (vCurrentLine[2] == 0) dTheta = 90;
 	else dTheta = -1 * atan(vCurrentLine[3] / vCurrentLine[2]) / CV_PI * 180.0;
 	if (dTheta < 0) dTheta += 180;
 	if (dCurrentSlopeAvg == 0) dCurrentSlopeAvg = dTheta;
 	printf("now : %.1f, Avg : %.1f\n",dTheta,dCurrentSlopeAvg);
+
+
 	if (dCurrentSlopeAvg == 0) {
 		dCurrentSlopeAvg = dTheta;
 		iStackcount = 1;

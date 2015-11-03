@@ -34,6 +34,12 @@ public class SWDUtil {
         return vectors;
     }
 
+
+    /**
+     * 아래 3개 함수에서, 각각 객체들을 Mat로 변환해주는데
+     * 올바르게 만든건지 확인좀
+     */
+
     public static Mat Vec4fToMat(List<Vec4f> lines)
     {
         Mat mat = new Mat();
