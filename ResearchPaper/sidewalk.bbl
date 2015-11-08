@@ -1,10 +1,54 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
 \begin{thebibliography}{\uppercase{MSW{\etalchar{*}}09}}
 
-\bibitem[BT07]{becker2007weakly}
-\textsc{Becker M., Teschner M.}:
-\newblock Weakly compressible sph for free surface flows.
-\newblock In \emph{Proceedings of the 2007 ACM SIGGRAPH/Eurographics symposium
-  on Computer animation} (2007), Eurographics Association, pp.~209--217.
+\bibitem[HE04]{he2004color}
+\textsc{He, Yinghua and Wang, Hong and Zhang, Bo}:
+\newblock Color-based road detection in urban traffic scenes
+\newblock In \emph{Intelligent Transportation Systems, IEEE Transactions on} (2004), IEEE, pp.~309--318.
+
+\bibitem[SENG08]{seng2008sidewalk}
+\textsc{Seng, John S and Norrie, Thomas J}:
+\newblock Sidewalk following using color histograms
+\newblock In \emph{Journal of Computing Sciences in Colleges}(2008), Consortium for Computing Sciences in Colleges, pp.~172--180.
+
+\bibitem[TOMAS98]{tomas1998bilateral}
+\textsc{Tomasi, Carlo and Manduchi, Roberto}: 
+\newblock Bilateral filtering for gray and color images
+\newblock In \emph{Computer Vision, 1998. Sixth International Conference on}(1998), IEEE, pp.~839--846.
+
+\bibitem[DENG93]{deng1993adaptive}
+\textsc{Deng, G and Cahill, LWtext}:
+\newblock An adaptive Gaussian filter for noise reduction and edge detection
+\newblock In \emph{Nuclear Science Symposium and Medical Imaging Conference, 1993., 1993 IEEE Conference Record.}(1993), IEEE, pp.~1615--1619.
+
+\bibitem[CANNY86]{canny1986computational}
+\textsc{Canny, John}:
+\newblock A computational approach to edge detection
+\newblock In \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions on}(1986), IEEE, pp.~679--698.
+
+\bibitem[BAO05]{bao2005canny}
+\textsc{Bao, Paul and Zhang, Lei and Wu, Xiaolin}:
+\newblock Canny edge detection enhancement by scale multiplication
+\newblock In \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions on}(2005), IEEE, pp.~1485--1490.
+
+\bibitem[SHAH15]{shah2015review}
+\textsc{Shah, Ghous Ali and Khan, Amjad and Shah, Asghar Ali and Raza, Mudassar and Sharif, Muhammad}:
+\newblock A REVIEW ON IMAGE CONTRAST ENHANCEMENT TECHNIQUES USING HISTOGRAM EQUALIZATION.
+\newblock In \emph{Science International}(2015)
+
+\bibitem[KIRIYATI91]{kiriyati1991probabilistic}
+\textsc{Kiryati, Nahum and Eldar, Yuval and Bruckstein, Alfred M}:
+\newblock A probabilistic Hough transform
+\newblock In \emph{Pattern recognition}(1991), Elsevier, pp.~303--316.
+
+\bibitem[BARINOVA12]{barinova2012detection}
+\textsc{Barinova, Olga and Lempitsky, Victor and Kholi, Pushmeet}:
+\newblock On detection of multiple object instances using hough transforms
+\newblock In \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions on}(2012), IEEE, pp.~1773--1784.
+
+\bibitem[SEBER12]{seber2012linear}
+\textsc{Seber, George AF and Lee, Alan J}:
+\newblock Linear regression analysis
+\newblock In \emph{Linear regression analysis}(2012), John Wiley \& Sons.
 
 \end{thebibliography}
