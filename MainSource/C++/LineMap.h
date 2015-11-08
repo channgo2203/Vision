@@ -20,7 +20,7 @@ public:
 	void compareCurrent();
 	void sendProtocol();
 	void callCornerExist();
-	void callPedestrianOutofdirection();
+	void callPedestrianOutofdirection(int);
 	void compareLine();
 	void static setSmStack(Size);
 	Vec4f calMapSlope(Mat);

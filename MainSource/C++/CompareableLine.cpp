@@ -21,11 +21,11 @@ int CompareableLine::getLine_size() {
 
 double CompareableLine::getFunctionS(CompareableLine* ll) {
 	if (getFunctionD(ll->getSlope()) == 0) return -10000000;
-	return cdParameter_beta*(pow(this->iLine_size + ll->getLine_size(),2) - sdAvgCubeLineSize) - getFunctionD(ll->getSlope()); // represent loss function of line which involves probablity of loss.
+	return cdParameter_beta*(pow(this->iLine_size + ll->getLine_size(),2) - sdAvgCubeLineSize - getFunctionD(ll->getSlope())) + getFunctionD(ll->getSlope()); // represent loss function of line which involves probablity of loss.
 }
 
 double CompareableLine::getFunctionD(double dSlope) {
-	if (10 + this->dSlope < dSlope || this->dSlope - 10 > dSlope) return sqrt(sdAvgCubeLineSize * abs(this->dSlope + dSlope - 2 * sdMapDegree));
+	if (10 + this->dSlope < dSlope || this->dSlope - 10 > dSlope) return abs(this->dSlope + dSlope - 2 * sdMapDegree)*(this->dSlope + dSlope);
 	return 0;
 }
 
@@ -57,6 +57,12 @@ void CompareableLine::setNowDegree(double dNowDegree) {
 	sdMapDegree = dNowDegree;
 }
 
+void CompareableLine::setParam(double val)
+{
+	CompareableLine::cdParameter_beta = val;
+}
+
 double CompareableLine::sdAvgLineSize;
 double CompareableLine::sdAvgCubeLineSize;
 double CompareableLine::sdMapDegree;
+double CompareableLine::cdParameter_beta;

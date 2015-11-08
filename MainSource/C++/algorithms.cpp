@@ -4,11 +4,14 @@
 
 void sendProc(int);
 void sendProc(int iAngleProtocol) {
-	printf("receive : %d\n", iAngleProtocol);
+	if (iAngleProtocol == 0)
+		printf("walking...\n");
+	else
+		printf("receive : %d\n", iAngleProtocol);
 }
 
 int main() {
-	CvCapture*  cvCapture = cvCreateFileCapture("C:\\Users\\dongmin\\OneDrive\\Pictures\\Camera Roll\\20150621_194350.mp4");
+	CvCapture*  cvCapture = cvCreateFileCapture("C:\\Users\\dongmin\\OneDrive\\Pictures\\Camera Roll\\20150621_194245.mp4");
 	IplImage* iFrame;
 	if (cvCapture == nullptr) throw("file error!");
 	char c;

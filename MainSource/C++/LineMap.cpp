@@ -1,5 +1,6 @@
 #include "LineMap.h"
 #include "CompareableLine.h"
+
 LineMap::LineMap(){}
 LineMap::~LineMap(){
 	vLines.clear();
@@ -34,40 +35,34 @@ void LineMap::compareCurrent() {
 	Vec4f vCurrentLine = calMapSlope(smStack);
 	double dTheta;
 	static int iStackcount = 1;
-	static double dCurrentSlopeAvg;
+	static double dCurrentSlopeAvg, dPreviousSlopeAvg;
 
 	if (vCurrentLine[2] == 0) dTheta = 90;
 	else dTheta = -1 * atan(vCurrentLine[3] / vCurrentLine[2]) / CV_PI * 180.0;
 	if (dTheta < 0) dTheta += 180;
-	if (dCurrentSlopeAvg == 0) dCurrentSlopeAvg = dTheta;
-	printf("now : %.1f, Avg : %.1f\n",dTheta,dCurrentSlopeAvg);
-
-
+	
 	if (dCurrentSlopeAvg == 0) {
 		dCurrentSlopeAvg = dTheta;
-		iStackcount = 1;
+		dPreviousSlopeAvg = dCurrentSlopeAvg;
 	}
-	if (iStackcount % 20 == 0) {
+
+	iStackcount++;
+	if (iStackcount % 30 == 0) {
 		setSmStack(Size(600, 400));
-		iStackcount = 1;
+		smStack = Scalar(0);
+		iStackcount = 0;
+		dPreviousSlopeAvg = dCurrentSlopeAvg;
 		dCurrentSlopeAvg = dTheta;
 	}
-	else if (abs(dCurrentSlopeAvg - dTheta) > 20) {
+	else if (abs(dPreviousSlopeAvg - dTheta) > 30) {
+		waitKey();
 		callCornerExist();
-		dCurrentSlopeAvg = dTheta;
-		iStackcount = 1;
 	}
-	else if (abs(dCurrentSlopeAvg - dTheta) > 5) {
-		callPedestrianOutofdirection();
-		if (dTheta < 0)
-			iAngleProtocol = (int)abs(dTheta - dCurrentSlopeAvg) / 5 + 5;
-		else
-			iAngleProtocol = (int)abs(dTheta - dCurrentSlopeAvg) / 5;
-		dCurrentSlopeAvg = dTheta;
-		iStackcount = 1;
+	else if (abs(dPreviousSlopeAvg - dTheta) > 10) {
+		callPedestrianOutofdirection((int)abs(dPreviousSlopeAvg - dTheta));
 	}
 	else {
-		dCurrentSlopeAvg *= iStackcount++;
+		dCurrentSlopeAvg *= iStackcount-1;
 		dCurrentSlopeAvg += dTheta;
 		dCurrentSlopeAvg /= iStackcount;
 		iAngleProtocol = 0;
@@ -82,12 +77,12 @@ void LineMap::callCornerExist(){
 	printf("There Exist in corner!\n");
 }
 
-void LineMap::callPedestrianOutofdirection() {
+void LineMap::callPedestrianOutofdirection(int code) {
 	printf("Pedestrian Out of direction!\n");
+	printf("%d\n", code);
 }
 
-Vec4f LineMap::calMapSlope(Mat resMap)
-{
+Vec4f LineMap::calMapSlope(Mat resMap) {
 	std::vector<Point> vPoint;
 	Vec4f vCurrentLine;
 
@@ -103,7 +98,7 @@ Vec4f LineMap::calMapSlope(Mat resMap)
 	return vCurrentLine;
 }
 
-void LineMap::compareLine() {
+void LineMap::compareLine() {	
 	CompareableLine* ResLine[2];
 	vector<CompareableLine*> cLineList;
 	
@@ -115,6 +110,23 @@ void LineMap::compareLine() {
 		dSumLineSize += (double)cLineList[i]->getLine_size();
 		dSumCubeLineSize += pow(cLineList[i]->getLine_size(), 2);
 	}
+
+	double x = 0, y = 0, X_sum = 0, Y_sum = 0;
+	for (size_t i = 0; i < vLines.size(); i++) {
+		for (size_t j = 0; j < vLines.size(); j++) {
+			if (i != j) {
+				x += pow(cLineList[i]->getLine_size() + cLineList[j]->getLine_size(), 2) - dSumCubeLineSize;
+				y += cLineList[i]->getFunctionD(cLineList[j]->getSlope());
+				X_sum += x;
+				Y_sum += y;
+			}
+		}
+	}
+
+	double beta = (2 * Y_sum - 2 * y) / (pow(x, 2) + x - 2 * X_sum + 2 * Y_sum);
+	CompareableLine::setParam(beta);
+
+//	printf("this is 1e20 * beta!! : %.10f\n",beta * 1e20);
 	
 	Vec4f vCurrent = calMapSlope(mLineMap);
 
@@ -130,7 +142,6 @@ void LineMap::compareLine() {
 	ResLine[1] = cLineList[1];
 	
 	for (size_t i = 2; i < vLines.size(); i++) {
-		cLineList[i]->calParams();
 		if (ResLine[0]->getFunctionS(ResLine[1]) < max(cLineList[i]->getFunctionS(ResLine[0]), cLineList[i]->getFunctionS(ResLine[1]))) { // if the line's loss function is larger in case of change occur
 			bool flag = (cLineList[i]->getFunctionS(ResLine[0]) < cLineList[i]->getFunctionS(ResLine[1])); // show the larger index (As we want less value of loss func)
 			ResLine[flag] = cLineList[i];
@@ -139,7 +150,6 @@ void LineMap::compareLine() {
 	
 	vResLine.push_back(ResLine[0]->getPoint());
 	vResLine.push_back(ResLine[1]->getPoint());
-
 	cLineList.clear();
 }
 
