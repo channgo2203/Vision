@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.20)  2 NOV 2015 09:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.10.20)  8 NOV 2015 20:05
 entering extended mode
 **sidewalk.tex
 (sidewalk.tex
@@ -650,8 +650,45 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1{C:/Users/dongmin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]) (ourmethod.tex
-[2]
+]
+
+LaTeX Warning: Citation `he2004color' on page 2 undefined on input line 3.
+
+
+LaTeX Warning: Citation `seng2008sidewalk' on page 2 undefined on input line 4.
+
+
+
+LaTeX Warning: Citation `tomas1998bilateral' on page 2 undefined on input line 
+5.
+
+
+LaTeX Warning: Citation `deng1993adaptive' on page 2 undefined on input line 5.
+
+
+
+LaTeX Warning: Citation `canny1986computational' on page 2 undefined on input l
+ine 6.
+
+
+LaTeX Warning: Citation `bao2005canny' on page 2 undefined on input line 6.
+
+
+LaTeX Warning: Citation `shah2015review' on page 2 undefined on input line 7.
+
+
+LaTeX Warning: Citation `kiryati1991probabilistic' on page 2 undefined on input
+ line 8.
+
+
+LaTeX Warning: Citation `barinova2012detection' on page 2 undefined on input li
+ne 8.
+
+
+LaTeX Warning: Citation `seber2012linear' on page 2 undefined on input line 10.
+
+
+) (ourmethod.tex [2]
 Underfull \hbox (badness 1859) in paragraph at lines 3--6
 \T1/ptm/m/n/9 (+20) The main key of our al-go-rithm is sum-ma-riz-ing. We
  []
@@ -689,17 +726,21 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
 Package rerunfilecheck Info: File `sidewalk.brf' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 1B3781CA5CE03499C6E6CAD82F971EEE;499.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
  ) 
 Here is how much of TeX's memory you used:
- 11104 strings out of 493673
- 167258 string characters out of 3145168
- 317987 words of memory out of 3000000
- 14046 multiletter control sequences out of 15000+200000
+ 11124 strings out of 493673
+ 167646 string characters out of 3145168
+ 316987 words of memory out of 3000000
+ 14066 multiletter control sequences out of 15000+200000
  56667 words of font info for 188 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 38i,11n,51p,1097b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,51p,1097b,369s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MikeTex/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/M
 ikeTex/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MikeTex/font
 s/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MikeTex/fonts/type1/publ
@@ -709,7 +750,7 @@ cm/cmsy7.pfb><C:/Program Files/MikeTex/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 keTex/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MikeTex/fonts/type1/ur
 w/times/utmr8a.pfb><C:/Program Files/MikeTex/fonts/type1/urw/times/utmri8a.pfb>
 
-Output written on sidewalk.pdf (4 pages, 121513 bytes).
+Output written on sidewalk.pdf (4 pages, 120603 bytes).
 PDF statistics:
  80 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
