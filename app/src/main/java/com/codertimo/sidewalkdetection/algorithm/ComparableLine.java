@@ -7,14 +7,14 @@ import org.opencv.core.Mat;
  */
 public class ComparableLine {
 
-    /**
-     * 이변수들은 쓰지도 않으면서 왜 만듬...?
-     */
+//    /**
+//     * 이변수들은 쓰지도 않으면서 왜 만듬...?
+//     */
 //    private final double sdAllowedMinGap = 0.9;
 //    private final double sdAllowedMaxGap = 1.1;
 //    private final double sdDeniedMinGap = 0.8;
 //    private final double sdDeniedMaxGap = 1.2;
-//    private final double cdParameter_beta = 0.000001;
+
 
     private int iLine_size =0;
     private double dSlope =0.0;
@@ -23,7 +23,6 @@ public class ComparableLine {
     /**
      * operator 은 뭐하는거야....?
      */
-    //CompareableLine operator=(const CompareableLine&);
 
     public ComparableLine(){}
 
@@ -48,9 +47,10 @@ public class ComparableLine {
      */
     public double getFunctionD(double dSlope)
     {
-        if(10 + this.dSlope < dSlope || this.dSlope - 10 > dSlope)
-            return Math.sqrt(SWDUtil.sdAvgCubeLineSize * Math.abs(this.dSlope + dSlope - 2 * SWDUtil.sdMapDegree));
-
+        if (10 + this.dSlope < dSlope || this.dSlope - 10 > dSlope) {
+            return Math.abs(this.dSlope + dSlope - 2 * SWDUtil.sdMapDegree)
+                    * (this.dSlope + dSlope);
+        }
         return 0;
     }
 
@@ -60,11 +60,16 @@ public class ComparableLine {
      */
     public double getFunctionS(ComparableLine comparableLine)
     {
-        if (10 + this.dSlope < dSlope || this.dSlope - 10 > dSlope)
-            return Math.sqrt(SWDUtil.sdAvgCubeLineSize * Math.abs(this.dSlope + dSlope - 2 * SWDUtil.sdMapDegree));
+        if (getFunctionD(comparableLine.getSlope()) == 0)
+            return -10000000;
 
-        return 0;
+        return SWDUtil.cdParameter_beta*(Math.pow(this.iLine_size + comparableLine.getLine_size(),2)
+                - SWDUtil.sdAvgCubeLineSize
+                - getFunctionD(comparableLine.getSlope()))
+                + getFunctionD(comparableLine.getSlope());
     }
+
+
 
     public Vec4i getPoint(){return vPoint;}
     public int getLine_size(){return iLine_size;}

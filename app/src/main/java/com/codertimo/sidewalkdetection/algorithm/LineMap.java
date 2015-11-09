@@ -20,15 +20,11 @@ public class LineMap {
     private List<Vec4i> vLines;
     private List<Vec4i> vResLine;
     private int iAngleProtocol;
-    public Mat smStack;
 
     /**
      * compareCurrent 에서
      * 내부 static 으로 선언되어있던것을 멤버변수로 옮겼음
      */
-    private double dCurrentSlopeAvg = 0.0;
-    private  int iStackcount = 1;
-
 
     public LineMap(){}
     public LineMap(Mat mat){
@@ -42,8 +38,8 @@ public class LineMap {
      */
     public void compareCurrent()
     {
-        Vec4f vCurrentLine = callMapSlope(smStack);
-        double dTheta =0.0;
+        Vec4f vCurrentLine = callMapSlope(SWDUtil.smStack);
+        double dTheta;
 
         if (vCurrentLine.x2 == 0)
             dTheta = 90;
@@ -53,38 +49,31 @@ public class LineMap {
         if (dTheta < 0)
             dTheta += 180;
 
-        if (dCurrentSlopeAvg == 0)
-            dCurrentSlopeAvg = dTheta;
-
-        Log.i("SWD", "now : " + dTheta + " Avg : " + dCurrentSlopeAvg);
-
-        if(dCurrentSlopeAvg == 0) {
-            dCurrentSlopeAvg = dTheta;
-            iStackcount = 1;
+        if (SWDUtil.dCurrentSlopeAvg == 0) {
+            SWDUtil.dCurrentSlopeAvg = dTheta;
+            SWDUtil.dPreviousSlopeAvg = SWDUtil.dCurrentSlopeAvg;
         }
-        if(iStackcount % 20 == 0) {
+        
+        SWDUtil.iStackcount++;
+
+
+        if(SWDUtil.iStackcount % 30 == 0) {
             setSmStack(new Size(600,400));
-            iStackcount = 1;
-            dCurrentSlopeAvg = dTheta;
+//            SWDUtil.smStack = new Mat()
+            SWDUtil.iStackcount = 0;
+            SWDUtil.dPreviousSlopeAvg = SWDUtil.dCurrentSlopeAvg;
+            SWDUtil.dCurrentSlopeAvg = dTheta;
         }
-        else if (Math.abs(dCurrentSlopeAvg - dTheta) > 20) {
+        else if (Math.abs(SWDUtil.dCurrentSlopeAvg - dTheta) > 30) {
             callCornerExist();
-            dCurrentSlopeAvg = dTheta;
-            iStackcount = 1;
         }
-        else if(Math.abs(dCurrentSlopeAvg - dTheta) > 5) {
-            callPedestrainOutofDirection();
-            if(dTheta < 0)
-                iAngleProtocol = (int)Math.abs(dTheta - dCurrentSlopeAvg)/5+5;
-            else
-                iAngleProtocol = (int)Math.abs(dTheta - dCurrentSlopeAvg) / 5;
-            dCurrentSlopeAvg = dTheta;
-            iStackcount = 1;
+        else if(Math.abs(SWDUtil.dCurrentSlopeAvg - dTheta) > 10) {
+            callPedestrainOutofDirection((int)Math.abs(SWDUtil.dPreviousSlopeAvg - dTheta));
         }
         else {
-            dCurrentSlopeAvg *= iStackcount++;
-            dCurrentSlopeAvg += dTheta;
-            dCurrentSlopeAvg /= iStackcount;
+            SWDUtil.dCurrentSlopeAvg *= SWDUtil.iStackcount-1;
+            SWDUtil.dCurrentSlopeAvg += dTheta;
+            SWDUtil.dCurrentSlopeAvg /= SWDUtil.iStackcount;
             iAngleProtocol = 0;
         }
     }
@@ -110,10 +99,16 @@ public class LineMap {
          * 이건 어떻게 할건지 논의 해야 할듯
          */
 
-        for(int i = 0; i<vLines.size(); i++){}
-            //line
-        for(int i = 0; i<2;i++){}
-            //line
+        for(int i = 0; i<vLines.size(); i++){
+            Core.line(mLineMap,new Point(vLines.get(i).x1,vLines.get(i).y1),new Point(vLines.get(i).x2,vLines.get(i).x2),new Scalar(255,255,255),1);
+        }
+
+        compareLine();
+
+        for(int i = 0; i<2;i++){
+            Core.line(SWDUtil.smStack,new Point(vResLine.get(i).x1,vResLine.get(i).y1),new Point(vResLine.get(i).x2,vResLine.get(i).y2),new Scalar(111),3);
+        }
+
         //imshow?
     }
 
@@ -138,7 +133,24 @@ public class LineMap {
             dSumCubeLineSize += Math.pow(cLineList.get(i).getLine_size(),2);
         }
 
+        double x = 0, y = 0, X_sum = 0, Y_sum = 0;
+        for (int i = 0; i < vLines.size(); i++) {
+            for (int j = 0; j < vLines.size(); j++) {
+                if (i != j) {
+                    x += Math.pow(cLineList.get(i).getLine_size() + cLineList.get(j).getLine_size(), 2) - dSumCubeLineSize;
+                    y += cLineList.get(i).getFunctionD(cLineList.get(j).getSlope());
+                    X_sum += x;
+                    Y_sum += y;
+                }
+            }
+        }
+
+        double beta = (2 * Y_sum - 2 * y) / (Math.pow(x, 2) + x - 2 * X_sum + 2 * Y_sum);
+        SWDUtil.setParam(beta);
+
+
         Vec4f vCurrent = callMapSlope(mLineMap);
+
         if(vCurrent.x2 == 0)
             dNowSlope = 90;
         else
@@ -148,10 +160,6 @@ public class LineMap {
             dNowSlope += 180;
 
 
-        /**
-         * 그래서 이걸로 바꿈 ;;;;
-         * 동민아 그렇게 살면 안된단다;;;;
-         */
         SWDUtil.sdAvgLineSize = dSumLineSize / vLines.size();
         SWDUtil.sdAvgCubeLineSize = dSumCubeLineSize / vLines.size();
         SWDUtil.sdMapDegree = dNowSlope;
@@ -161,7 +169,6 @@ public class LineMap {
         ResLine[1] = cLineList.get(1);
 
         for(int i= 0; i<vLines.size();i++){
-            cLineList.get(i).calParams();
 
             double first = ResLine[0].getFunctionS(ResLine[1]);
 
@@ -195,12 +202,6 @@ public class LineMap {
 
         for(int y=0;y<resMap.size().height; y++)
         {
-
-            /**
-             * uchar로 변환하는거 못하겠으니 이건 너가 짜센 ㅇㅇ
-             * ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-             */
-
             //uchar* ptr = resMap.ptr<uchar>(y);
             for(int x=0;x<resMap.size().width;x++)
             {
@@ -221,16 +222,16 @@ public class LineMap {
     {
         return mLineMap;
     }
-    public void setSmStack(Size size)
-    {
-        smStack = new Mat(size, CvType.CV_8UC1, new Scalar(0));
+    public void setSmStack(Size size) {
+        SWDUtil.smStack = new Mat(size, CvType.CV_8UC1, new Scalar(0));
     }
     private void callCornerExist(){
         Log.i("SWD","There Exist in corner!\n");
     }
-    public void callPedestrainOutofDirection()
+    public void callPedestrainOutofDirection(int code)
     {
         Log.i("SWD","Pedestrian Out of direction!\n");
+        Log.i("SWD",""+code);
     }
     public void sendProtocol()
     {

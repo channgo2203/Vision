@@ -2,6 +2,7 @@ package com.codertimo.sidewalkdetection;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,6 +31,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    void sendProtocal(int iAngleProtocol){
+        if(iAngleProtocol == 0)
+            Log.i("SWD","walking..");
+        else
+            Log.i("SWD","receive : "+iAngleProtocol);
+    }
 
 
 }

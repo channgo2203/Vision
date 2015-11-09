@@ -15,6 +15,16 @@ public class SWDUtil {
     public static double sdAvgLineSize = 0;
     public static double sdAvgCubeLineSize = 0;
     public static double sdMapDegree = 0;
+    public static double cdParameter_beta = 0;
+
+    public static int iStackcount = 1;
+    public static  double dCurrentSlopeAvg = 0.0;
+    public static  double dPreviousSlopeAvg = 0.0;
+    public static Mat smStack;
+
+    public static void setParam(double val){
+        SWDUtil.cdParameter_beta = val;
+    }
 
     public static List<Vec4i> MatToVec4is (Mat lines)
     {
