@@ -1,19 +1,22 @@
-package com.codertimo.sidewalkdetection.algorithm;
+package com.codertimo.sidewalkdetection.algorithm; // 파키지 
 
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
+import org.opencv.core.Mat; // 임포르틍
+import org.opencv.core.Point; // 임포르틍
 
-import java.util.ArrayList;
-import java.util.List;
+ 
+import java.util.ArrayList; // 임포르틍
+
+import java.util.List; // 임포르틍
+
 
 /**
- * Created by codertimo on 2015. 11. 2..
+ * Created by codertimo on 2015. 11. 2.. and me
  */
 public class Vec4f {
-    public float x1;
-    public float y1;
-    public float x2;
-    public float y2;
+    public float x1; // 1
+    public float y1; // 2
+    public float x2; // 3
+    public float y2; // 4
 
     public Vec4f() {}
     public Vec4f(Mat mat)

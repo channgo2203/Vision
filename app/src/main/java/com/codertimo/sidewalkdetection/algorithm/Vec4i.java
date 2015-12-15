@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by codertimo on 2015. 11. 2..
+ * Created by codertimo on 2015. 11. 2.. and me
  */
 public class Vec4i {
     public int x1;
