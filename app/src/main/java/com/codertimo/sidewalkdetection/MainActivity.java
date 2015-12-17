@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.codertimo.sidewalkdetection.algorithm.SWDProcessor;
 import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
 import com.codertimo.sidewalkdetection.algorithm.SWDGlobalValue;
-import com.codertimo.sidewalkdetection.algorithm.SWDProcesser;
+import com.codertimo.sidewalkdetection.algorithm.SWDProcessor;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -16,7 +17,7 @@ import org.opencv.core.Scalar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SWDProcesser processer = new SWDProcesser();
+    private SWDProcessor processer = new SWDProcessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

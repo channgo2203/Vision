@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by codertimo on 2015. 12. 17..
  */
-public class SWDProcesser {
+public class SWDProcessor {
 
     /**
      * 설명 : HoughLine을 적용하는 알고리즘
