@@ -1,13 +1,12 @@
 package com.codertimo.sidewalkdetection.algorithm;
 
+import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
+
 /**
  * Created by codertimo on 2015. 12. 17..
  */
 public class SWDAlgorithm
 {
-
-
-
     /**
      * 판별식 함수
      * @param mainComparableLine

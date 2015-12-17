@@ -1,16 +1,23 @@
-﻿package com.codertimo.sidewalkdetection.algorithm;
+package com.codertimo.sidewalkdetection.algorithm;
 
-import android.util.Log;
-import org.opencv.core.*;
-import org.opencv.imgproc.*;
+import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
+import com.codertimo.sidewalkdetection.algorithm.type.Vec4f;
+import com.codertimo.sidewalkdetection.algorithm.type.Vec4i;
+
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by codertimo and DMK on 2015. 10. 26..
+ * Created by codertimo on 2015. 12. 17..
  */
-
-public class LineMap {
+public class SWDProcesser {
 
     /**
      * 설명 : HoughLine을 적용하는 알고리즘
@@ -34,7 +41,7 @@ public class LineMap {
     public void compareCurrent()
     {
         Vec4f vCurrentLine = callMapSlope(SWDGlobalValue.slopeStack);
-        double dTheta = SWDUtil.convertToRadian(vCurrentLine); // 현재 각도를 저장
+        double dTheta = SWDSubAlgorithm.convertToRadian(vCurrentLine); // 현재 각도를 저장
 
 
         if (SWDGlobalValue.currentSlopeAvg == 0) { // 만일 기울기가 0 (바로 전에 초기화)
@@ -45,7 +52,7 @@ public class LineMap {
         // 프레임 갯수 증가
         SWDGlobalValue.frameCount++;
 
-        // 30번마다 SWDUtil 초기화
+        // 30번마다 SWDSubAlgorithm 초기화
         if(SWDGlobalValue.frameCount % 30 == 0) {
             SWDGlobalValue.slopeStack = new Mat(new Size(600,4), CvType.CV_8UC1, new Scalar(0));
             SWDGlobalValue.frameCount = 0;
@@ -84,7 +91,7 @@ public class LineMap {
          */
         double sumLineSize = 0.0;
         double sumSquaredLineSize =0.0;
-        List<Vec4i> houghLines = SWDUtil.MatToVec4is(houghLineResult);
+        List<Vec4i> houghLines = SWDSubAlgorithm.MatToVec4is(houghLineResult);
 
         List<ComparableLine> comparableLines = new ArrayList<>();
         ComparableLine[] twoResultLine = new ComparableLine[2];
@@ -115,7 +122,7 @@ public class LineMap {
 
         // 현재 경향성의 기울기
         Vec4f currentSlope = callMapSlope(houghLineResult);
-        double currentRadianSlope = SWDUtil.convertToRadian(currentSlope);
+        double currentRadianSlope = SWDSubAlgorithm.convertToRadian(currentSlope);
         SWDGlobalValue.currentSlope = currentRadianSlope;
 
         //평균선분의 길이, 평균선분의^2 길이
@@ -170,7 +177,7 @@ public class LineMap {
 
         //선형회귀 분석
         Mat fitLineResultMap = new Mat();
-        Imgproc.fitLine(SWDUtil.PointsToMat(points),fitLineResultMap,Imgproc.CV_DIST_L2,0,0.01,0.01); // 선형회귀(OLS), 0.01 ,0.01
+        Imgproc.fitLine(SWDSubAlgorithm.PointsToMat(points),fitLineResultMap,Imgproc.CV_DIST_L2,0,0.01,0.01); // 선형회귀(OLS), 0.01 ,0.01
 
         //선형회귀 결과 Mat, Vec4f로 전환 후 리턴
         Vec4f fitline_result = new Vec4f(fitLineResultMap);

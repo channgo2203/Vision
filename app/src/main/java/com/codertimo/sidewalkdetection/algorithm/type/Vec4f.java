@@ -1,4 +1,4 @@
-package com.codertimo.sidewalkdetection.algorithm;
+package com.codertimo.sidewalkdetection.algorithm.type;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import java.util.ArrayList;

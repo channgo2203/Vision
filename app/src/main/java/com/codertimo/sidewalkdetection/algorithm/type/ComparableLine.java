@@ -1,12 +1,9 @@
-﻿package com.codertimo.sidewalkdetection.algorithm;
+package com.codertimo.sidewalkdetection.algorithm.type;
 
 /**
- * Created by codertimo And DMK on 2015. 11. 3..
+ * Created by codertimo on 2015. 12. 17..
  */
-
-//직선간의 정보를 비교하기 위해서 정보를 저장하고, 비교하는 기능을 가진 클래스
 public class ComparableLine {
-
     /**
      * lenth : 선분의 길이
      * slope : 직선의 기울기
@@ -26,13 +23,11 @@ public class ComparableLine {
         this.lenth = (int)Math.pow(point.x1-point.x2,2) +(int) Math.pow(point.y1-point.y2,2);
 
         if(point.x1 == point.x2) slope = 90; // 0으로 나눌려면 90도로 미리 처리
-            // 아니면 arctan, 호도법으로 DMS Notation으로 전환
-            slope = Math.atan(-1 * (point.y2 - point.y1)/(point.x2 - point.x1)) * 180.0 /Math.PI;
+        // 아니면 arctan, 호도법으로 DMS Notation으로 전환
+        slope = Math.atan(-1 * (point.y2 - point.y1)/(point.x2 - point.x1)) * 180.0 /Math.PI;
 
         if(slope < 0) // 각도는 0~180도 까지만 허용, 만약 이를 초과시 180+해서 수정
             slope += 180;
     }
-
-
 
 }

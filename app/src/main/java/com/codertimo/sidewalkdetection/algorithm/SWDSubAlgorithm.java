@@ -1,21 +1,19 @@
-﻿package com.codertimo.sidewalkdetection.algorithm;
+package com.codertimo.sidewalkdetection.algorithm;
+
+import com.codertimo.sidewalkdetection.algorithm.type.Vec4f;
+import com.codertimo.sidewalkdetection.algorithm.type.Vec4i;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
- 
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by codertimo & DMK on 2015. 11. 2..
+ * Created by codertimo on 2015. 12. 17..
  */
-public class SWDUtil {
-
-
-
-    public static void clear(){}
-
+public class SWDSubAlgorithm {
     public static List<Vec4i> MatToVec4is (Mat lines)
     {
         List<Vec4i> vectors = new ArrayList<>();
@@ -67,11 +65,11 @@ public class SWDUtil {
         mat.create(1,lines.size(),CvType.CV_8UC1);
 
         /**
-        * List<Point>를 Mat로 전환하는 코드좀 짜주센 ㅇㅇㅇ;;;;
+         * List<Point>를 Mat로 전환하는 코드좀 짜주센 ㅇㅇㅇ;;;;
          **/
 
         //-------------------------------------//
-        //List<Point> to Mat 
+        //List<Point> to Mat
         //------------------------------------//
 
         return mat;
@@ -96,6 +94,5 @@ public class SWDUtil {
 
         return theta;
     }
-
 
 }
