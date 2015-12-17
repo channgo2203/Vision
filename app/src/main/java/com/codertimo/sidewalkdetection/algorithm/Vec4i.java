@@ -1,8 +1,6 @@
 package com.codertimo.sidewalkdetection.algorithm;
 
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfInt4;
 import org.opencv.core.Point;
 
 import java.util.ArrayList;

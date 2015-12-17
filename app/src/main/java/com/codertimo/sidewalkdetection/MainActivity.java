@@ -1,41 +1,57 @@
-package com.codertimo.sidewalkdetection; // ÆÄÅ°Áö ÀÓÆ÷¸£Æ®
+package com.codertimo.sidewalkdetection;
 
-import android.support.v7.app.ActionBarActivity; // do import
-import android.os.Bundle; // do import
-import android.util.Log; // do import
-import android.view.Menu; // do import
-import android.view.MenuItem; // do import
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import com.codertimo.sidewalkdetection.algorithm.LineMap; // do import
+import com.codertimo.sidewalkdetection.algorithm.ComparableLine;
+import com.codertimo.sidewalkdetection.algorithm.LineMap;
+import com.codertimo.sidewalkdetection.algorithm.SWDGlobalValue;
+import com.codertimo.sidewalkdetection.algorithm.SWDUtil;
+import com.codertimo.sidewalkdetection.algorithm.Vec4i;
 
-import org.opencv.core.Mat; // do import
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity { // class
+public class MainActivity extends AppCompatActivity {
 
 
-    private LineMap frame = null; // ÇÏ³ªÀÇ ÀÌ¹ÌÁö¿¡ Á¸ÀçÇÏ´Â ¶óÀÎÀ» ÀúÀåÇÏ´Â Å¬·¡½ºÀÎ LineMapÀ» frameÀÌ¶ó°í Á¤ÀÇÇÏ°í, ±×°ÍÀ» ÃÊ±âÈ­ÇÑ´Ù.
+    private LineMap frame = null;
 
-    @Override // ¾Æ³ëÅ×ÀÌ½Ã¾î¾ğ
-    protected void onCreate(Bundle savedInstanceState) { // Å©¸®¿¡ÀÌÅõ
-        super.onCreate(savedInstanceState); // ¿À´ÀÅ©¸®¿¡ÀÌÅõ
-        setContentView(R.layout.activity_main); // ÄÜÅºÆ®ºä
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
     }
 
-    private void SWDProcess(Mat mat) // ¿¡½ºµûºíÀ¯µğ Ã³¸® ¸¶Æ®
+    private void SWDProcess(Mat input)
     {
-        frame = new LineMap(mat); // »ı¼ºÀÚ¸¦ ÀÌ¿ëÇÏ¿© MatÁ¤º¸¸¦ LineMap¿¡ ³Ñ±â°í, ±×Á¤º¸¸¦ Åä´ë·Î °´Ã¼ »ı¼º
-        frame.setLine(); // ¹ŞÀº Mat Á¤º¸¸¦ Åä´ë·Î ¿©·¯°¡Áö ÇÊÅÍ¸¦ Àû¿ëÇÏ¿© Á÷¼± °è»ê
-        frame.compareCurrent(); // °è»êµÈ Á÷¼±À» ÀÌ¿ëÇÏ¿© ÀÌÀü±îÁöÀÇ Á÷¼±°ú °æÇâ¼º ºñ±³
-        frame.sendProtocol(); // °á°ú°ªÀ» Àü´Ş
+        //1. HoughLine ê²°ê³¼ë¬¼ì„ ì ìš©í•¨
+        Mat houghLineResult = frame.getHoughLineResult(input);
+
+        //2. 2ê°œì˜ ì¤‘ìš” ì§ì„ ì„ ê²€ì¶œí•˜ëŠ” ì‘ì—…
+        ComparableLine[] twoLine = frame.getTwoLine(houghLineResult);
+
+        //3. ê¸°ìš¸ê¸° ë©”íŠ¸ì— ê·¸ë¦¬ê¸°
+        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[0].point.x1, twoLine[0].point.y1), new Point(twoLine[0].point.x2, twoLine[0].point.y2), new Scalar(111), 3);
+        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[1].point.x1, twoLine[1].point.y1), new Point(twoLine[1].point.x2, twoLine[1].point.y2), new Scalar(111), 3);
+
+        //4.
+        frame.compareCurrent();
+
     }
 
 
-    void sendProtocal(int iAngleProtocol){ // ¼¼¿¡¿¡¤Ä¿¨ˆf ÇÁ·ÎÅ¸Äİ
-        if(iAngleProtocol == 0) // ÇÁ·ÎÅ¸ÄİÀÌ 0ÀÌ¸é(Á¤»ó»óÈ²)
-            Log.i("SWD","walking.."); // ·Î±ë..
+    void sendProtocal(int iAngleProtocol){
+        if(iAngleProtocol == 0)
+            Log.i("SWD","walking..");
         else
-            Log.i("SWD","receive : "+iAngleProtocol); // ·Î±ë
+            Log.i("SWD","receive : "+iAngleProtocol);
     }
 
 
