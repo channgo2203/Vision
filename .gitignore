@@ -149,3 +149,6 @@ pythontex-files-*/
 # WinEdt
 *.bak
 *.sav
+*.xml
+
+*.iml
