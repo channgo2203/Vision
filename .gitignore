@@ -160,3 +160,7 @@ pythontex-files-*/
 *.ap_
 
 *.store
+
+*.so
+
+gradlew
