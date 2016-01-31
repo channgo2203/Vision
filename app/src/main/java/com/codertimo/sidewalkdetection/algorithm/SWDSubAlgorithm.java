@@ -6,6 +6,7 @@ import com.codertimo.sidewalkdetection.algorithm.type.Vec4i;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.utils.Converters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.List;
 /**
  * Created by codertimo on 2015. 12. 17..
  */
-public class SWDSubAlgorithm {
+public class SWDSubAlgorithm
+{
+
     public static List<Vec4i> MatToVec4is (Mat lines)
     {
         List<Vec4i> vectors = new ArrayList<>();
@@ -58,20 +61,9 @@ public class SWDSubAlgorithm {
         return mat;
     }
 
-
     public static Mat PointsToMat(List<Point> lines)
     {
-        Mat mat = new Mat();
-        mat.create(1,lines.size(),CvType.CV_8UC1);
-
-        /**
-         * List<Point>를 Mat로 전환하는 코드좀 짜주센 ㅇㅇㅇ;;;;
-         **/
-
-        //-------------------------------------//
-        //List<Point> to Mat
-        //------------------------------------//
-
+        Mat mat = Converters.vector_Point_to_Mat(lines);
         return mat;
     }
 

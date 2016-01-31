@@ -164,3 +164,5 @@ pythontex-files-*/
 *.so
 
 gradlew
+
+*.xml

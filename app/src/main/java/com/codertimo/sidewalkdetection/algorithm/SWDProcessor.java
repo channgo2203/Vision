@@ -10,6 +10,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.utils.Converters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,18 +163,15 @@ public class SWDProcessor {
      */
     private Vec4f callMapSlope(Mat mat)
     {
+        List<Point> tpoints = new ArrayList<>();
         List<Point> points = new ArrayList<>();
 
-//        이게 뭐하는거야....?
-//        for(int y=0;y<resMap.size().height; y++)
-//        {
-//            uchar* ptr = resMap.ptr<uchar>(y);
-//            for(int x=0;x<resMap.size().width;x++)
-//            {
-//                if (ptr[x] != 0)
-//                    vPoint.add(new Point(x,y));
-//            }
-//        }
+        Converters.Mat_to_vector_Point(mat,tpoints);
+
+        for (Point p : points) {
+            if (p.x != 0 && p.y != 0)
+                points.add(p);
+        }
 
         //선형회귀 분석
         Mat fitLineResultMap = new Mat();

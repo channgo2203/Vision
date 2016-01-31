@@ -3,44 +3,72 @@ package com.codertimo.sidewalkdetection;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.SurfaceView;
 
-import com.codertimo.sidewalkdetection.algorithm.SWDProcessor;
-import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
-import com.codertimo.sidewalkdetection.algorithm.SWDGlobalValue;
-import com.codertimo.sidewalkdetection.algorithm.SWDProcessor;
-
-import org.opencv.core.Core;
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private SWDProcessor processer = new SWDProcessor();
+    private CameraBridgeViewBase mCameraView;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11,
+                this, mLoaderCallback);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    private void SWDProcess(Mat input)
-    {
-        //1. HoughLine 결과물을 적용함
-        Mat houghLineResult = processer.getHoughLineResult(input);
-
-        //2. 2개의 중요 직선을 검출하는 작업
-        ComparableLine[] twoLine = processer.getTwoLine(houghLineResult);
-
-        //3. 기울기 메트에 그리기
-        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[0].point.x1, twoLine[0].point.y1), new Point(twoLine[0].point.x2, twoLine[0].point.y2), new Scalar(111), 3);
-        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[1].point.x1, twoLine[1].point.y1), new Point(twoLine[1].point.x2, twoLine[1].point.y2), new Scalar(111), 3);
-
-        //4. 현재 보행자가 어떤 상황인지 파악
-        processer.compareCurrent();
+        mCameraView = (CameraBridgeViewBase) findViewById(R.id.java_camera);
+        mCameraView.setVisibility(SurfaceView.VISIBLE);
+        mCameraView.setCvCameraViewListener(listener);
 
     }
+
+    BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i("JUN", "OpenCV loaded successfully");
+                    mCameraView.enableView();
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
+
+    private CameraBridgeViewBase.CvCameraViewListener2 listener = new CameraBridgeViewBase.CvCameraViewListener2() {
+        @Override
+        public void onCameraViewStarted(int width, int height) {
+
+        }
+
+        @Override
+        public void onCameraViewStopped() {
+
+        }
+
+        @Override
+        public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+//            Mat input = inputFrame.rgba();
+            return inputFrame.rgba();
+        }
+    };
 
 
     void sendProtocal(int iAngleProtocol){
