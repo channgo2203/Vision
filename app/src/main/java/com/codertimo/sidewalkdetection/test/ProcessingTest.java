@@ -29,9 +29,9 @@ public class ProcessingTest
         //2. 2개의 중요 직선을 검출하는 작업
         ComparableLine[] twoLine = processer.getTwoLine(houghLineResult);
 
-        //3. 기울기 메트에 그리기
-        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[0].point.x1, twoLine[0].point.y1), new Point(twoLine[0].point.x2, twoLine[0].point.y2), new Scalar(111), 3);
-        Core.line(SWDGlobalValue.slopeStack, new Point(twoLine[1].point.x1, twoLine[1].point.y1), new Point(twoLine[1].point.x2, twoLine[1].point.y2), new Scalar(111), 3);
+        //3. 프래임마다 중요한 직선들을 저장하고 있음
+        SWDGlobalValue.slopeStack.addAll(twoLine[0].point.drawLine());
+        SWDGlobalValue.slopeStack.addAll(twoLine[1].point.drawLine());
 
         //4. 현재 보행자가 어떤 상황인지 파악
         processer.compareCurrent();

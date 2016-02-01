@@ -75,15 +75,15 @@ public class SWDSubAlgorithm
     public static double convertToRadian(Vec4f line)
     {
         double theta = 0.0;
-
-        // 0으로 나누는 것을 방지
-        if (line.x2 == 0)
-            theta = 90;
-        else
-            theta = -1 * Math.atan(line.y2 / line.x2) / Math.PI * 180.0;
-        if (theta < 0) // 오차 수정
-            theta += 180;
-
+//
+//        // 0으로 나누는 것을 방지
+//        if (line.x2 == 0)
+//            theta = 90;
+//        else
+//            theta = -1 * Math.atan(line.y2 / line.x2) / Math.PI * 180.0;
+//        if (theta < 0) // 오차 수정
+//            theta += 180;
+//
         return theta;
     }
 

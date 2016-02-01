@@ -6,6 +6,7 @@ import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
 import com.codertimo.sidewalkdetection.algorithm.type.Vec4f;
 import com.codertimo.sidewalkdetection.algorithm.type.Vec4i;
 
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -43,7 +44,7 @@ public class SWDProcessor {
      */
     public void compareCurrent()
     {
-        Vec4f vCurrentLine = callMapSlope(SWDGlobalValue.slopeStack);
+        Vec4f vCurrentLine = slopeStackFitline(SWDGlobalValue.slopeStack);
         double dTheta = SWDSubAlgorithm.convertToRadian(vCurrentLine); // 현재 각도를 저장
 
 
@@ -58,7 +59,6 @@ public class SWDProcessor {
         // 30번마다 SWDSubAlgorithm 초기화
         if(SWDGlobalValue.frameCount % 30 == 0) {
             Log.d("SWD","Clear");
-            SWDGlobalValue.slopeStack = new Mat(new Size(600,4), CvType.CV_8UC1, new Scalar(0));
             SWDGlobalValue.frameCount = 0;
             SWDGlobalValue.previousSlopeAvg = SWDGlobalValue.currentSlopeAvg;
             SWDGlobalValue.currentSlopeAvg = dTheta;
@@ -112,23 +112,23 @@ public class SWDProcessor {
         }
 
         //베타 산출위한 전처리 작업
-        double x=0, y=0, x_sum=0, y_sum=0;
-        for (int i = 0; i < houghLines.size(); i++) {
-            for (int j = 0; j < houghLines.size(); j++) {
-                if (i != j) {
-                    x += Math.pow(comparableLines.get(i).lenth + comparableLines.get(j).lenth, 2) - sumSquaredLineSize;
-                    y += SWDAlgorithm.getDiscriminantResult(comparableLines.get(i), comparableLines.get(j));
-                    x_sum += x;
-                    y_sum += y;
+            double x=0, y=0, x_sum=0, y_sum=0;
+            for (int i = 0; i < houghLines.size(); i++) {
+                for (int j = 0; j < houghLines.size(); j++) {
+                    if (i != j) {
+                        x += Math.pow(comparableLines.get(i).lenth + comparableLines.get(j).lenth, 2) - sumSquaredLineSize;
+                        y += SWDAlgorithm.getDiscriminantResult(comparableLines.get(i), comparableLines.get(j));
+                        x_sum += x;
+                        y_sum += y;
+                    }
                 }
-            }
         }
 
         // 베타를 산출 및 저장
         double beta = Math.round(((2 * y_sum - 2 * y) / (Math.pow(x, 2) + x - 2 * x_sum + 2 * y_sum))*100)/100;
 
         // 현재 경향성의 기울기
-        Vec4f currentSlope = callMapSlope(houghLineResult);
+        Vec4f currentSlope = houghlineSlope(houghLines);
         double currentRadianSlope = SWDSubAlgorithm.convertToRadian(currentSlope);
         SWDGlobalValue.currentSlope = currentRadianSlope;
 
@@ -164,27 +164,41 @@ public class SWDProcessor {
 
     /**
      * 설명 : HoughLine으로 출력된 영상의 직선들에 대한 선형회귀 결과 return
-     * @param mat
      * @return Vec4f 선형회귀결과
      */
-    private Vec4f callMapSlope(Mat mat)
+    private Vec4f houghlineSlope(List<Vec4i> lines)
     {
-        List<Point> tpoints = new ArrayList<>();
         List<Point> points = new ArrayList<>();
-
-        Converters.Mat_to_vector_Point(mat,tpoints);
-
-        for (Point p : points) {
-            if (p.x != 0 && p.y != 0)
-                points.add(p);
+        for (Vec4i vec : lines)
+        {
+            points.addAll(vec.drawLine());
         }
 
         //선형회귀 분석
         Mat fitLineResultMap = new Mat();
-        Imgproc.fitLine(SWDSubAlgorithm.PointsToMat(points),fitLineResultMap,Imgproc.CV_DIST_L2,0,0.01,0.01); // 선형회귀(OLS), 0.01 ,0.01
+        Imgproc.fitLine(Converters.vector_Point_to_Mat(points),fitLineResultMap,Imgproc.CV_DIST_L2,0,0.01,0.01);
 
+        //vx,vy,x0,y0 값으로 retrun된다고 합니다
         //선형회귀 결과 Mat, Vec4f로 전환 후 리턴
         Vec4f fitline_result = new Vec4f(fitLineResultMap);
+
+        return fitline_result;
+    }
+
+    /**
+     * 설명 : Slop들의 축적으로 쌓여진 영상의 직선들에 대한 선형회귀 결과 return
+     * @return Vec4f 선형회귀결과
+     */
+    private Vec4f slopeStackFitline(List<Point> lines)
+    {
+        //선형회귀 분석
+        Mat fitLineResultMap = new Mat();
+        Imgproc.fitLine(Converters.vector_Point_to_Mat(lines),fitLineResultMap,Imgproc.CV_DIST_L2,0,0.01,0.01);
+
+        //vx,vy,x0,y0 값으로 retrun된다고 합니다
+        //선형회귀 결과 Mat, Vec4f로 전환 후 리턴
+        Vec4f fitline_result = new Vec4f(fitLineResultMap);
+
         return fitline_result;
     }
 }

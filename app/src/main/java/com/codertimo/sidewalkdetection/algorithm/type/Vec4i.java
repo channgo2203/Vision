@@ -50,4 +50,24 @@ public class Vec4i {
         points.add(new Point(x1,y1));
         return points;
     }
+
+    public List<Point> drawLine()
+    {
+        List<Point> points = new ArrayList<>();
+        // y=ax+b
+        int slope = 0;
+
+        try {
+            slope = Math.round((y2-y1)/(x2-x1));
+        }
+        catch (ArithmeticException e)
+        {}
+
+        int equation_b = y1 - slope*x1;
+        for(int x=x1;x<=x2;x+=2)
+        {
+            points.add(new Point(x,slope*x+equation_b));
+        }
+        return points;
+    }
 }
