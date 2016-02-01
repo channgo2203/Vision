@@ -166,3 +166,9 @@ pythontex-files-*/
 gradlew
 
 *.xml
+
+*.ap_
+
+*.ap_
+
+*.aar

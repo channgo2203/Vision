@@ -20,11 +20,15 @@ public class ComparableLine {
     public ComparableLine(Vec4i vec){
 
         this.point = vec;
-        this.lenth = (int)Math.pow(point.x1-point.x2,2) +(int) Math.pow(point.y1-point.y2,2);
 
-        if(point.x1 == point.x2) slope = 90; // 0으로 나눌려면 90도로 미리 처리
-        // 아니면 arctan, 호도법으로 DMS Notation으로 전환
-        slope = Math.atan(-1 * (point.y2 - point.y1)/(point.x2 - point.x1)) * 180.0 /Math.PI;
+        this.lenth = (int)Math.pow(point.x1-point.x2,2) +(int) Math.pow(point.y1-point.y2,2);
+        //길이에 루트 씌워줘야 하는거 아닌가
+
+        if(point.x1 == point.x2)
+            slope = 90; // 0으로 나눌려면 90도로 미리 처리
+        else
+            slope = Math.atan(-1 * (point.y2 - point.y1)/(point.x2 - point.x1)) * 180.0 /Math.PI;
+            // 아니면 arctan, 호도법으로 DMS Notation으로 전환
 
         if(slope < 0) // 각도는 0~180도 까지만 허용, 만약 이를 초과시 180+해서 수정
             slope += 180;

@@ -1,9 +1,13 @@
 package com.codertimo.sidewalkdetection;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
+
+import com.codertimo.sidewalkdetection.test.ProcessingTest;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -15,12 +19,13 @@ import org.opencv.core.Mat;
 public class MainActivity extends AppCompatActivity {
 
     private CameraBridgeViewBase mCameraView;
+    private ProcessingTest processingTest = new ProcessingTest();
+
 
     @Override
     public void onResume() {
         super.onResume();
-        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11,
-                this, mLoaderCallback);
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11, this, mLoaderCallback);
     }
 
     @Override
@@ -65,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-//            Mat input = inputFrame.rgba();
+            Mat input = inputFrame.rgba();
+            Log.i("JUN","Frame Incoming");
+            processingTest.SWDProcess(input);
             return inputFrame.rgba();
         }
     };
@@ -77,6 +84,5 @@ public class MainActivity extends AppCompatActivity {
         else
             Log.i("SWD","receive : "+iAngleProtocol);
     }
-
 
 }

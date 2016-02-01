@@ -19,11 +19,9 @@ public class ProcessingTest
     private SWDProcessor processer = new SWDProcessor();
 
     public ProcessingTest(){
-        //run test
-
     }
 
-    private void SWDProcess(Mat input)
+    public void SWDProcess(Mat input)
     {
         //1. HoughLine 결과물을 적용함
         Mat houghLineResult = processer.getHoughLineResult(input);

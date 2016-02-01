@@ -1,5 +1,7 @@
 package com.codertimo.sidewalkdetection.algorithm;
 
+import android.util.Log;
+
 import com.codertimo.sidewalkdetection.algorithm.type.ComparableLine;
 import com.codertimo.sidewalkdetection.algorithm.type.Vec4f;
 import com.codertimo.sidewalkdetection.algorithm.type.Vec4i;
@@ -27,8 +29,8 @@ public class SWDProcessor {
      */
     public Mat getHoughLineResult(Mat mRawImg)
     {
-        Mat mCannyResult = null;
-        Mat houghLineResult = null;
+        Mat mCannyResult = new Mat();
+        Mat houghLineResult = new Mat();
 
         Imgproc.Canny(mRawImg, mCannyResult, 50, 200);
         Imgproc.HoughLinesP(mCannyResult, houghLineResult, 1, Math.PI / 180, 50, 50, 10);
@@ -55,6 +57,7 @@ public class SWDProcessor {
 
         // 30번마다 SWDSubAlgorithm 초기화
         if(SWDGlobalValue.frameCount % 30 == 0) {
+            Log.d("SWD","Clear");
             SWDGlobalValue.slopeStack = new Mat(new Size(600,4), CvType.CV_8UC1, new Scalar(0));
             SWDGlobalValue.frameCount = 0;
             SWDGlobalValue.previousSlopeAvg = SWDGlobalValue.currentSlopeAvg;
@@ -63,13 +66,16 @@ public class SWDProcessor {
         else if (Math.abs(SWDGlobalValue.currentSlopeAvg - dTheta) > 30) {
             // 30도 이상 회전시 코너로 판별
             // Corner가 나왔을경우 호출
+            Log.d("SWD","CONER");
         }
         else if(Math.abs(SWDGlobalValue.currentSlopeAvg - dTheta) > 10) {
+            Log.d("SWD","Prison Break");
             //!!사용자 이탈!!//
             // 10~30도면 사용자가 방향을 이탈할 가능성이 있으므로
             // 이탈 각도 (int)Math.abs(SWDGlobalValue.previousSlopeAvg - dTheta)
         }
         else {
+            Log.d("SWD","Nothing");
             SWDGlobalValue.currentSlopeAvg *= SWDGlobalValue.frameCount-1; // 아니면 계속 평균 누적
             SWDGlobalValue.currentSlopeAvg += dTheta; // 전환
             SWDGlobalValue.currentSlopeAvg /= SWDGlobalValue.frameCount; // 초기화
@@ -119,7 +125,7 @@ public class SWDProcessor {
         }
 
         // 베타를 산출 및 저장
-        double beta = (2 * y_sum - 2 * y) / (Math.pow(x, 2) + x - 2 * x_sum + 2 * y_sum);
+        double beta = Math.round(((2 * y_sum - 2 * y) / (Math.pow(x, 2) + x - 2 * x_sum + 2 * y_sum))*100)/100;
 
         // 현재 경향성의 기울기
         Vec4f currentSlope = callMapSlope(houghLineResult);
