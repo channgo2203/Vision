@@ -6,8 +6,13 @@ Existing Sidewalk Detection Algorithms are based on Color Histogram. They find f
 
 So we found the other way to detect sidewalks. It's **Line Detection** and **Vanishing Point**. Using those features, we could detect the sidewalk more efficiently.
 
-## How It's works
+Using this Algorithm, we can detect **Area of Sidewalk**, **Coner Of Sidewalk** and **Possibility of breakaway from sidewalk**
+
+In Addition, we develop improved SideWalk Detection that works on **Multiple Color Sidewalk**
+
+## Result Images
 ![Task Procedure](https://github.com/codertimo/SideWalkDetection/blob/master/task.png)
+
 
 ## Contributor
 
