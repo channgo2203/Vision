@@ -1,0 +1,55 @@
+apply plugin: 'com.android.model.application'
+
+model {
+    android {
+        compileSdkVersion 23
+        buildToolsVersion "23.0.2"
+
+        defaultConfig {
+            applicationId "com.github.codertimo.walkingassistance"
+            minSdkVersion.apiLevel 15
+            targetSdkVersion.apiLevel 23
+            versionCode 1
+            versionName "1.0"
+        }
+
+        ndk {
+            moduleName "native"
+            cppFlags.add("-I/Users/codertimo/GoogleDrive/Develop/OpenCV_LIB/OpenCV-android-sdk/sdk/native/jni/include")
+            cppFlags.add("-frtti")
+            cppFlags.add("-fexceptions")
+            cppFlags.add("-std=c++11")
+            ldLibs.add("log")
+            ldLibs.add("opencv_java3")
+            stl "gnustl_static"
+        }
+
+        buildTypes {
+            release {
+                ndk {
+                    debuggable true
+                }
+                // minifyEnabled = false
+                // proguardFiles = getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+        productFlavors {
+            // for detailed abiFilter descriptions, refer to "Supported ABIs" @
+            // https://developer.android.com/ndk/guides/abis.html#sa
+            create("x86") {
+                ndk {
+                    abiFilters.add("x86")
+                    ldFlags.add("-Lsrc/main/jniLibs/x86")
+                }
+            }
+        }
+
+    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile project(':openCVLibrary310')
+}
