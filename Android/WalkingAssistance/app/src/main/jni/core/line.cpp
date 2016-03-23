@@ -12,7 +12,7 @@ ResultLines lineDetection(Mat origin)
 
     Mat canny;
     Canny(origin,canny,2,300);
-    HoughLines(canny, lines, 1, CV_PI / 180, 130, 0, 0);
+    HoughLines(canny, lines, 1, CV_PI / 180, 80, 0, 0);
 
     for (size_t i = 0; i < lines.size(); i++) {
         float rho = lines[i][0], theta = lines[i][1];
@@ -42,12 +42,12 @@ void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLine
     }
     else if(degree>20 && degree<60) {
         line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
-        resultLines->roadlines_right.push_back(vec4i);
+        resultLines->roadlines_left.push_back(vec4i);
         resultLines->roadlines.push_back(vec4i);
     }
     else if(degree>115 && degree<155) {
         line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
-        resultLines->roadlines_left.push_back(vec4i);
+        resultLines->roadlines_right.push_back(vec4i);
         resultLines->roadlines.push_back(vec4i);
     }
     else if(degree>60 && degree<115)

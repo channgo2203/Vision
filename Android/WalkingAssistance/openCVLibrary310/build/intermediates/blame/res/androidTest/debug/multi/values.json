@@ -2,5 +2,9 @@
     {
         "outputFile": "/Users/codertimo/GoogleDrive/Develop/SideWalkDetection/Android_JNI/WalkingAssistance/openCVLibrary310/build/intermediates/res/merged/androidTest/debug/values/values.xml",
         "map": []
+    },
+    {
+        "outputFile": "/Users/codertimo/GoogleDrive/Develop/SideWalkDetection/Android/WalkingAssistance/openCVLibrary310/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+        "map": []
     }
 ]

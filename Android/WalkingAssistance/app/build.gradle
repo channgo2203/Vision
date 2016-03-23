@@ -42,6 +42,24 @@ model {
                     ldFlags.add("-Lsrc/main/jniLibs/x86")
                 }
             }
+            create("armeabi") {
+                ndk {
+                    abiFilters.add("armeabi")
+                    ldFlags.add("-Lsrc/main/jniLibs/armeabi")
+                }
+            }
+            create("armeabi-v7a") {
+                ndk {
+                    abiFilters.add("armeabi-v7a")
+                    ldFlags.add("-Lsrc/main/jniLibs/armeabi-v7a")
+                }
+            }
+            create("x86_64") {
+                ndk {
+                    abiFilters.add("x86_64")
+                    ldFlags.add("-Lsrc/main/jniLibs/x86_64")
+                }
+            }
         }
 
     }
@@ -50,6 +68,5 @@ model {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.2.1'
     compile project(':openCVLibrary310')
 }

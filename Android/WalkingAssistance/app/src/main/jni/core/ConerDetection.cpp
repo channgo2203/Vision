@@ -5,22 +5,35 @@
 
 int connerDetection(ResultLines *resultLines, Point vanPoint, Size image ,Size range, double k)
 {
+
     resultLines->right_crosspoint = getCrossPoints(resultLines->roadlines,resultLines->conerlines_right,vanPoint,image,range);
     resultLines->left_crosspoint = getCrossPoints(resultLines->roadlines,resultLines->conerline_left,vanPoint,image,range);
 
     int normalCornerresult = nomalConner(resultLines,vanPoint);
     int verticalCornerresult = isVerticalConner(resultLines,vanPoint);
 
+    //수직 조건 리턴
     if(normalCornerresult>0 && verticalCornerresult>0)
         return verticalCornerresult;
-    if(normalCornerresult>0 && verticalCornerresult <0)
-        return normalCornerresult;
-    else
+
+    //수직 조건 리턴
+    if(verticalCornerresult>0 && normalCornerresult==0)
         return verticalCornerresult;
+
+    //곡선 조건 리턴
+    if(normalCornerresult>0 && verticalCornerresult ==0)
+        return normalCornerresult;
+
+    else
+        return 0;
 }
 
 int nomalConner(ResultLines *resultLines, Point vanPoint)
 {
+    int isvanPoint =0;
+    if(vanPoint.x!=0 && vanPoint.y!=0)
+        isvanPoint = 100;
+
     bool road_right_bigger = resultLines->roadlines_right.size() > resultLines->roadlines_left.size()*1.5;
     bool road_left_bigger = resultLines->roadlines_left.size() > resultLines->roadlines_right.size()*1.5;
     bool conner_line_bigger = resultLines->roadlines.size() < resultLines->connerlines.size();
@@ -33,46 +46,51 @@ int nomalConner(ResultLines *resultLines, Point vanPoint)
         {
             //오른쪽을 향하는 방향성이 더 큰경우
 //            cout << "보도의 왼쪽 방향성이 더 강합니다"<< endl;
-            return 11;
+            return isvanPoint+11;
         }
 
         else if(road_right_bigger && conner_right_bigger)
         {
             //왼쪽을 향하는 방향성이 더 큰경우
 //            cout << "보도의 오른쪽 방향성이 더 강합니다"<< endl;
-            return 12;
+            return isvanPoint+12;
         }
 
         else
         {
             //아무것도 아닌 경우
-            return 0;
+            return isvanPoint+0;
         }
     }
     else{
-        return 0;
+        return isvanPoint+0;
     }
 }
 
 int isVerticalConner(ResultLines *resultLines, Point vanPoint) {
-    bool right_gone = resultLines->roadlines_left.size() > resultLines->roadlines_right.size() * 2;
-    bool left_gone = resultLines->roadlines_right.size() > resultLines->roadlines_left.size() * 2;
+
+    int isvanPoint =0;
+    if(vanPoint.x!=0 && vanPoint.y!=0)
+        isvanPoint = 100;
+
+    bool right_corner = resultLines->roadlines_left.size() > resultLines->roadlines_right.size() * 2;
+    bool left_corner = resultLines->roadlines_right.size() > resultLines->roadlines_left.size() * 2;
     bool vertical_Conner =
             (resultLines->roadlines.size() == 0 || resultLines->roadlines.size() < resultLines->horizenLines.size()) &&
             vanPoint.x == 0 && vanPoint.y == 0;
 
     if (vertical_Conner) {
-        if (left_gone) {
+        if (right_corner) {
 //            cout << "오른쪽의 수직 코너 발생" << endl;
-            return 21;
+            return isvanPoint+21;
         }
-        else if (right_gone) {
+        else if (left_corner) {
 //            cout << "왼쪽의 수직 코너 발생" << endl;
-            return 22;
+            return isvanPoint+22;
         }
         else {
 //            cout << "수직 코너 발생" << endl;
-            return 20;
+            return isvanPoint+20;
         }
     }
     return 0;

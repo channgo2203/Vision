@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /Users/codertimo/GoogleDrive/Develop/SideWalkDetection/Android_JNI/WalkingAssistance/openCVLibrary310/src/main/aidl/org/opencv/engine/OpenCVEngineInterface.aidl
+ * Original file: /Users/codertimo/GoogleDrive/Develop/SideWalkDetection/Android/WalkingAssistance/openCVLibrary310/src/main/aidl/org/opencv/engine/OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**
