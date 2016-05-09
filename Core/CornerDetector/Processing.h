@@ -6,14 +6,10 @@
 #define SIDEWALKDETECTION_PROCESSING_H
 
 #include "default.h"
-#include "cluster.h"
 #include "line.h"
-#include "ConerDetection.h"
+#include "CornerDetection.h"
 
-void connerTest(Mat mat,int cnt);
-ResultLines colorDetection(Mat origin,int cnt);
-Mat setRoi(Mat mat);
-void imageTextWrite(Mat *origin,int cornerCode);
+int cornerDetection(Mat mat,int w1, int w2);
 
 
 #endif //SIDEWALKDETECTION_PROCESSING_H

@@ -1,7 +1,8 @@
 //
 // Created by 김준성 on 2016. 3. 4..
 //
-#include "ConerDetection.h"
+#include "CornerDetection.h"
+#include "CornerCode.h"
 
 int connerDetection(ResultLines *resultLines, Point vanPoint, Size image ,Size range, double k)
 {
@@ -43,26 +44,21 @@ int nomalConner(ResultLines *resultLines, Point vanPoint)
     {
         if(road_left_bigger && conner_left_bigger)
         {
-            //오른쪽을 향하는 방향성이 더 큰경우
-//            cout << "보도의 왼쪽 방향성이 더 강합니다"<< endl;
-            return isvanPoint+11;
+            return RIGHT_ROUND;
         }
 
         else if(road_right_bigger && conner_right_bigger)
         {
-            //왼쪽을 향하는 방향성이 더 큰경우
-//            cout << "보도의 오른쪽 방향성이 더 강합니다"<< endl;
-            return isvanPoint+12;
+            return LEFT_ROUND;
         }
 
         else
         {
-            //아무것도 아닌 경우
-            return isvanPoint+0;
+            return NOTHING;
         }
     }
     else{
-        return isvanPoint+0;
+        return NOTHING;
     }
 }
 
@@ -81,18 +77,18 @@ int isVerticalConner(ResultLines *resultLines, Point vanPoint) {
     if (vertical_Conner) {
         if (right_corner) {
 //            cout << "오른쪽의 수직 코너 발생" << endl;
-            return isvanPoint+21;
+            return RIGHT_VERTICAL;
         }
         else if (left_corner) {
 //            cout << "왼쪽의 수직 코너 발생" << endl;
-            return isvanPoint+22;
+            return LEFT_VERTIVAL;
         }
         else {
 //            cout << "수직 코너 발생" << endl;
-            return isvanPoint+20;
+            return UNKNWON_VERTICAL;
         }
     }
-    return 0;
+    return NOTHING;
 }
 
 vector<Point> getCrossPoints(vector<Vec4i> roadlines, vector<Vec4i> otherlines, Point vanPoint, Size image, Size range)
