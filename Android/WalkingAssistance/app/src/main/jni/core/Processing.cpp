@@ -3,9 +3,9 @@
 //
 #include "Processing.h"
 
-int cornerDetection(Mat origin)
+int cornerDetection(Mat origin , int w1, int w2)
 {
-    ResultLines resultLines = lineDetection(origin);
+    ResultLines resultLines = lineDetection(origin,w1,w2);
     Point vanPoint = vanishingPointDetection(resultLines,origin.size());
 
     if(vanPoint.x!=0 && vanPoint.y!=0)

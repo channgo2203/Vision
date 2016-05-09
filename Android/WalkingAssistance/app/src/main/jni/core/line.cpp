@@ -5,14 +5,16 @@
 #include "line.h"
 #include "ConerDetection.h"
 
-ResultLines lineDetection(Mat origin)
+//w1 : 80
+//w2 : 0
+ResultLines lineDetection(Mat origin,int w1, int w2)
 {
     vector<Vec2f> lines;
     ResultLines resultlines;
 
     Mat canny;
     Canny(origin,canny,2,300);
-    HoughLines(canny, lines, 1, CV_PI / 180, 80, 0, 0);
+    HoughLines(canny, lines, 1, CV_PI / 180, w1, w2, 0);
 
     for (size_t i = 0; i < lines.size(); i++) {
         float rho = lines[i][0], theta = lines[i][1];

@@ -135,7 +135,6 @@ vector<Point> getCrossPoints(vector<Vec4i> roadlines, vector<Vec4i> otherlines, 
     return rangePoint;
 }
 
-
 Point vanishingPointDetection(ResultLines resultLines, Size image)
 {
     vector<Point> cross_points;

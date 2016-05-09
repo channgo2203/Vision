@@ -12,7 +12,7 @@ extern "C" {
  * Method:    cornerDetection
  * Signature: (J)I
  */
-JNIEXPORT jint JNICALL Java_com_github_codertimo_walkingassistance_MainActivity_cornerDetection(JNIEnv *,jobject , jlong);
+JNIEXPORT jint JNICALL Java_com_github_codertimo_walkingassistance_MainActivity_cornerDetection(JNIEnv *,jobject , jlong, jint, jint);
 
 #ifdef __cplusplus
 }

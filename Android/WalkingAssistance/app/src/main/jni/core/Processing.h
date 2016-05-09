@@ -9,7 +9,7 @@
 #include "line.h"
 #include "ConerDetection.h"
 
-int cornerDetection(Mat mat);
+int cornerDetection(Mat mat,int w1, int w2);
 
 
 #endif //SIDEWALKDETECTION_PROCESSING_H
