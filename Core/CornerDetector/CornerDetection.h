@@ -7,7 +7,6 @@
 #include "default.h"
 
 int connerDetection(ResultLines *resultLines, Point vanPoint, Size image ,Size range, double k);
-int connerDetection(vector<Point> right_point, vector<Point> left_point, double k);
 vector<Point> getCrossPoints(vector<Vec4i> roadlines, vector<Vec4i> otherlines, Point vanPoint, Size image, Size range);
 Point vanishingPointDetection(ResultLines resultLines, Size image);
 int nomalConner(ResultLines *resultLines, Point vanPoint);

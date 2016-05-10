@@ -14,24 +14,12 @@
 
 using namespace cv;
 using namespace std;
-
-#define ClusterK 20
-#define MaxColorCount 4
-
 class CompareableLine;
 class LineMap;
 
-typedef struct ColorCount
-{
-    int color;
-    int count;
-}ColorCount;
 
 typedef struct ResultLines
 {
-    vector<Point> right_crosspoint;
-    vector<Point> left_crosspoint;
-
     vector<Vec4i> allLines;
     vector<Vec4i> roadlines;
     vector<Vec4i> otherlines;

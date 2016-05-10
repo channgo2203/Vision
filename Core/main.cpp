@@ -1,55 +1,72 @@
 #include <fstream>
 #include <dirent.h>
 #include "main.h"
-#include "CornerDetector/default.h"
 #include "CornerDetector/CornerCode.h"
 #include "CornerDetector/Processing.h"
+
 
 static int linesize = 30;
 static int w1 =120;
 
 int main() {
+    calRenderingTime("/Users/codertimo/Desktop/Test2/");
     filelist("/Users/codertimo/Desktop/Test2/");
 }
 
-void processing_video(string fileurl, string name)
-{
-    ofstream myfile;
-    myfile.open (fileurl+"/result/"+name+".txt");
+void processing_video(string fileurl, string name) {
 
-    CvCapture*  cvCapture = cvCreateFileCapture((fileurl+name).c_str());
-    IplImage* iFrame;
+    //Log 파일 write Initializing
+    ofstream logfile;
+    logfile.open (fileurl+"/result/"+name+".txt");
 
+    //Video Input Initializing
+    VideoCapture cap(fileurl+name);
+
+    //Video Frame Loop
     while (1) {
-        iFrame = cvQueryFrame(cvCapture);
-        if (!iFrame) break;
+        Mat origin,dst;
+        if (!cap.read(origin)) break;
 
-        Mat origin = cvarrToMat(iFrame);
-        Mat dst;
+        resize(origin, dst, Size(origin.cols*0.2,origin.rows*0.2));
 
-        resize(origin, dst, Size(origin.cols*0.3,origin.rows*0.3));
+        //Houghline Weight 동적 조정
+        houghline_stablization();
 
-        if(linesize>20)
-            w1 += 10;
-        if(linesize > 50)
-            w1 += 10;
+        //Houghline 으로 Line 검출 및 분류
+        ResultLines resultLines = lineDetection(dst,w1,0);
 
-        if(linesize<10)
-            w1 -= 10;
+        //1. 코너 검출
+        int code = cornerDetection(dst,resultLines ,w1, 0);
+        //2. 보도 이탈 검출
 
-        int code = cornerDetection(dst,w1,0);
+        //3. 점자 블록 검출?
 
+        //Log 출력
         printToMat(code);
         imshow("origin",dst);
-        cout << code;
-        myfile << code;
+        logfile << code;
         cvWaitKey(1);
     }
 
-    myfile.close();
-    cvReleaseCapture(&cvCapture);
+    //Log, Video File Close
+    logfile.close();
+    cap.release();
 }
+double getVideoTime(string filename) {
+    //Video Input Initializing
+    VideoCapture cap(filename);
+    return cap.get(CV_CAP_PROP_FRAME_COUNT) * 0.38;
+}
+void houghline_stablization() {
 
+    //line크기에 따른 HoughLine Weight값 조정
+    if(linesize>20)
+        w1 += 10;
+    if(linesize > 50)
+        w1 += 10;
+    if(linesize<10)
+        w1 -= 10;
+}
 void printToMat(int code) {
     Mat result_mat = Mat::zeros(200,400,CV_8UC1);
 
@@ -103,16 +120,31 @@ void setLineSize(int size) {
 void filelist(string filedir) {
     DIR            *dir_info;
     struct dirent  *dir_entry;
-
     dir_info = opendir(filedir.c_str());              // 현재 디렉토리를 열기
     if ( NULL != dir_info)
     {
+
         while( dir_entry   = readdir( dir_info))  // 디렉토리 안에 있는 모든 파일과 디렉토리 출력
         {
-            cout << dir_entry->d_name<<"\n";
-            processing_video(filedir,dir_entry->d_name);
-            cout << dir_entry->d_name << " finish"<<"\n";
+                cout << dir_entry->d_name << " : start \n";
+                processing_video(filedir, dir_entry->d_name);
         }
         closedir(dir_info);
     }
+}
+void calRenderingTime(string filedir) {
+    DIR            *dir_info;
+    struct dirent  *dir_entry;
+    dir_info = opendir(filedir.c_str());              // 현재 디렉토리를 열기
+    double total_time;
+    if ( NULL != dir_info)
+    {
+
+        while( dir_entry   = readdir( dir_info))  // 디렉토리 안에 있는 모든 파일과 디렉토리 출력
+        {
+                total_time += getVideoTime(filedir + dir_entry->d_name);
+        }
+        closedir(dir_info);
+    }
+    cout << "예상 랜더링 소요 시간 :"<<(int)total_time/60<<"분 "<< ((int)total_time)%60 <<"초 입니다";
 }

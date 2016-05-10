@@ -3,7 +3,6 @@
 //
 
 #include "line.h"
-#include "CornerDetection.h"
 #include "../main.h"
 
 ResultLines lineDetection(Mat origin,int w1, int w2)
@@ -18,7 +17,6 @@ ResultLines lineDetection(Mat origin,int w1, int w2)
 
     HoughLines(canny, lines, 1, CV_PI / 180, w1, w2, 0);
 
-    cout << "linesize : "<<lines.size() << "/ w1 :"<< w1 <<"\n";
     setLineSize(lines.size());
 
     for (size_t i = 0; i < lines.size(); i++) {

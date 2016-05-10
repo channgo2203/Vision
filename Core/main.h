@@ -11,6 +11,8 @@ void processing_video(string filename, string onlyname);
 void filelist(string filedir);
 void printToMat(int code);
 void setLineSize(int size);
-
+void houghline_stablization();
+double getVideoTime(string filename);
+void calRenderingTime(string filedir);
 
 #endif //GOOGLESCIENCEFAIR_MAIN_H
