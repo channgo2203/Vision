@@ -11,30 +11,9 @@
 #include <cstring>
 #include <math.h>
 #include <opencv2/highgui.hpp>
+#include "ResultLines.h"
 
 using namespace cv;
 using namespace std;
-class CompareableLine;
-class LineMap;
-
-
-typedef struct ResultLines
-{
-    vector<Vec4i> allLines;
-    vector<Vec4i> roadlines;
-    vector<Vec4i> otherlines;
-    vector<Vec4i> horizenLines;
-    vector<Vec4i> verticalLines;
-    vector<Vec4i> connerlines;
-
-    vector<Vec4i> roadlines_right;
-    vector<Vec4i> roadlines_left;
-
-    vector<Vec4i> conerlines_right;
-    vector<Vec4i> conerline_left;
-
-}ResultLines;
-
-
 
 #endif //SIDEWALKDETECTION_DEFAULT_H
