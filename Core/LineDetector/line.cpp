@@ -5,15 +5,13 @@
 #include "line.h"
 #include "../main.h"
 
-ResultLines lineDetection(Mat origin,int w1, int w2)
-{
+
+ResultLines lineDetection(Mat origin,int w1, int w2) {
     vector<Vec2f> lines;
     ResultLines resultlines;
 
     Mat canny;
     Canny(origin,canny,100,500);
-
-    imshow("haha",canny);
 
     HoughLines(canny, lines, 1, CV_PI / 180, w1, w2, 0);
 
@@ -37,9 +35,7 @@ ResultLines lineDetection(Mat origin,int w1, int w2)
 
     return resultlines;
 }
-
-void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLines *resultLines, Mat origin)
-{
+void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLines* resultLines, Mat origin) {
 
     if(degree>0 && degree<20)
     {

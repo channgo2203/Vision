@@ -1,23 +1,27 @@
-#include <fstream>
-#include <dirent.h>
-#include "main.h"
-#include "CornerDetector/CornerCode.h"
-#include "CornerDetector/Processing.h"
 
+#include "main.h"
+#include "Loging/Loging.h"
+#include "CornerDetector/CornerDetection.h"
+#include "LineDetector/line.h"
 
 static int linesize = 30;
 static int w1 =120;
+static int frame_count =1;
+static LineCounts linecounts;
 
 int main() {
-    calRenderingTime("/Users/codertimo/Desktop/Test2/");
-    filelist("/Users/codertimo/Desktop/Test2/");
+    
+    //Python Matplot 초기화
+    loging_initalizing();
+    
+    //랜더링 소요 시간 예상
+    calRenderingTime("/Users/codertimo/Desktop/Test3/");
+    
+    //실제 처리 시작
+    filelist("/Users/codertimo/Desktop/Test3/");
 }
 
 void processing_video(string fileurl, string name) {
-
-    //Log 파일 write Initializing
-    ofstream logfile;
-    logfile.open (fileurl+"/result/"+name+".txt");
 
     //Video Input Initializing
     VideoCapture cap(fileurl+name);
@@ -27,7 +31,7 @@ void processing_video(string fileurl, string name) {
         Mat origin,dst;
         if (!cap.read(origin)) break;
 
-        resize(origin, dst, Size(origin.cols*0.2,origin.rows*0.2));
+        resize(origin, dst, Size(origin.cols*0.3,origin.rows*0.3));
 
         //Houghline Weight 동적 조정
         houghline_stablization();
@@ -35,21 +39,32 @@ void processing_video(string fileurl, string name) {
         //Houghline 으로 Line 검출 및 분류
         ResultLines resultLines = lineDetection(dst,w1,0);
 
-        //1. 코너 검출
-        int code = cornerDetection(dst,resultLines ,w1, 0);
-        //2. 보도 이탈 검출
+        //Python Matplot Chart Linking
+        matplot_refreash(resultLines);
 
-        //3. 점자 블록 검출?
+        //Line 누적 <40Frame>
+        linecounts.insert(resultLines);
 
-        //Log 출력
-        printToMat(code);
+        //40Frame에 한번 검사
+        if(frame_count++%40==0)
+        {
+            //방향성 검출
+            int direction_code = cornerDetection2(linecounts);
+            direction_result_print(direction_code);
+            linecounts.clear();
+        }
+
+        //보도 이탈 검출
+        int escape_code = escape_detection(resultLines.roadlines);
+
+        //Line Draw된 Original Mat 출력
         imshow("origin",dst);
-        logfile << code;
+
         cvWaitKey(1);
     }
 
-    //Log, Video File Close
-    logfile.close();
+    resultLineLoging(fileurl,name);
+    plot_clear();
     cap.release();
 }
 double getVideoTime(string filename) {
@@ -58,7 +73,6 @@ double getVideoTime(string filename) {
     return cap.get(CV_CAP_PROP_FRAME_COUNT) * 0.38;
 }
 void houghline_stablization() {
-
     //line크기에 따른 HoughLine Weight값 조정
     if(linesize>20)
         w1 += 10;
@@ -66,53 +80,6 @@ void houghline_stablization() {
         w1 += 10;
     if(linesize<10)
         w1 -= 10;
-}
-void printToMat(int code) {
-    Mat result_mat = Mat::zeros(200,400,CV_8UC1);
-
-    /// Font Face
-    int myFontFace = 2;
-
-    /// Font Scale
-    double myFontScale = 1.2;
-
-    string result;
-
-    switch(code)
-    {
-        case RIGHT_VERTICAL:
-            result = "Right_Vertical";
-            break;
-
-        case LEFT_VERTIVAL:
-            result = "Left_Vertical";
-            break;
-
-        case UNKNWON_VERTICAL:
-            result = "Unknown_Vertical";
-            break;
-
-        case RIGHT_ROUND:
-            result = "Right_Round";
-            break;
-
-        case LEFT_ROUND:
-            result = "Left_Round";
-            break;
-
-        case ROUND:
-            result = "Round";
-            break;
-
-        case NOTHING:
-            result = "Nothing";
-            break;
-
-    }
-
-    cv::putText( result_mat , result, Point(50,50), myFontFace, myFontScale, Scalar::all(255) );
-
-    imshow("result_Text",result_mat);
 }
 void setLineSize(int size) {
     linesize = size;
