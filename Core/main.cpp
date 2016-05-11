@@ -7,18 +7,22 @@
 static int linesize = 30;
 static int w1 =120;
 static int frame_count =1;
+
 static LineCounts linecounts;
 
 int main() {
     
     //Python Matplot 초기화
-    loging_initalizing();
+    loging_initalizing(); //윈도우 경우 주석처리
     
     //랜더링 소요 시간 예상
-    calRenderingTime("/Users/codertimo/Desktop/Test3/");
+    calRenderingTime("/Users/codertimo/Desktop/Test3/"); //윈도우 경우 주석처리
     
     //실제 처리 시작
-    filelist("/Users/codertimo/Desktop/Test3/");
+    filelist("/Users/codertimo/Desktop/Test3/"); //윈도우 경우 주석처리
+
+//    윈도우인경우 아래와 같은 방법으로 사용할것 - 아래 한줄로 사용가능 위에 나머지 전부 주석처리
+//    processing_video("C://~~","test.avi");
 }
 
 void processing_video(string fileurl, string name) {
@@ -40,7 +44,7 @@ void processing_video(string fileurl, string name) {
         ResultLines resultLines = lineDetection(dst,w1,0);
 
         //Python Matplot Chart Linking
-        matplot_refreash(resultLines);
+        matplot_refreash(resultLines); //윈도우 경우 주석처리
 
         //Line 누적 <40Frame>
         linecounts.insert(resultLines);
@@ -50,21 +54,23 @@ void processing_video(string fileurl, string name) {
         {
             //방향성 검출
             int direction_code = cornerDetection2(linecounts);
+            //검출결과 출력
             direction_result_print(direction_code);
+            //누적된 line들 초기화
             linecounts.clear();
         }
 
         //보도 이탈 검출
         int escape_code = escape_detection(resultLines.roadlines);
 
-        //Line Draw된 Original Mat 출력
+        //Line 그려진 Original Mat 출력
         imshow("origin",dst);
 
         cvWaitKey(1);
     }
 
-    resultLineLoging(fileurl,name);
-    plot_clear();
+    resultLineLoging(fileurl,name); //윈도우 경우 주석처리
+    plot_clear(); //윈도우 경우 주석처리
     cap.release();
 }
 double getVideoTime(string filename) {
