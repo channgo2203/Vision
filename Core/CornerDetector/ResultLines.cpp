@@ -22,7 +22,7 @@ void LineCounts::sort() {
     std::sort(size.begin(), size.end(), sort_pred());
 
     for(int i=0;i<5;i++) {
-        cout << size[i].first<<" ";
+//        cout << size[i].first<<" ";
         rank[i] = size[i].second;
     }
 }
@@ -39,7 +39,7 @@ void LineCounts::insert(ResultLines resultLines) {
     road_left+=resultLines.roadlines_left.size();
     corner_right+=resultLines.conerlines_right.size();
     corner_left+=resultLines.conerline_left.size();
-    vertical+=resultLines.verticalLines.size();
+    vertical+=resultLines.horizenLines.size();
 }
 
 

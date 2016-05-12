@@ -18,6 +18,8 @@ void loging_initalizing() {
     Py_Initialize();
     PyRun_SimpleString("from matplotlib.pyplot import *");
     PyRun_SimpleString("ion()");
+    PyRun_SimpleString("figure();");
+    PyRun_SimpleString("subplot(111)");
 }
 void plot() {
     string plot_roadright = "plot("+vector2String(roadline_right)+",color='r',label="+'\''+"Road_Right"+'\''+");";
@@ -39,7 +41,6 @@ void plot_clear() {
     cornerline_left.clear();
     vertical.clear();
     frame_count=0;
-    PyRun_SimpleString("close();");
 }
 
 void matplot_refreash(ResultLines lines) {
@@ -154,8 +155,9 @@ void direction_result_print(int code) {
             break;
     }
     cv::putText( result_mat , result, Point(50,50), myFontFace, myFontScale, Scalar::all(255) );
-    cout << "Result : "+result+"\n";
-    imshow("result_Text",result_mat);
+    cout << "Direction :"<<result<<endl;
+
+//    imshow("result_Text",result_mat);
 }
 
 

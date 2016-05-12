@@ -8,6 +8,7 @@
 #include "CornerDetector/default.h"
 #include "CornerDetector/CornerCode.h"
 #include "EscapeDetector/EscapeDetection.h"
+#include <math.h>
 
 
 
