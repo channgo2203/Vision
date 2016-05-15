@@ -5,7 +5,7 @@
 #ifndef GOOGLESCIENCEFAIR_MAIN_H
 #define GOOGLESCIENCEFAIR_MAIN_H
 
-#include "CornerDetector/default.h"
+#include "default.h"
 #include "CornerDetector/CornerCode.h"
 #include "EscapeDetector/EscapeDetection.h"
 #include <math.h>
@@ -19,10 +19,6 @@ void filelist(string filedir);
 
 void setLineSize(int size);
 void houghline_stablization();
-double getVideoTime(string filename);
-void calRenderingTime(string filedir);
-void resultLineLoging(string fileurl, string filename);
-void resultLine_update(ResultLines resultlines);
 
 
 #endif //GOOGLESCIENCEFAIR_MAIN_H

@@ -154,7 +154,7 @@ void direction_result_print(int code) {
             result = "Nothing";
             break;
     }
-    cv::putText( result_mat , result, Point(50,50), myFontFace, myFontScale, Scalar::all(255) );
+//    cv::putText( result_mat , result, Point(50,50), myFontFace, myFontScale, Scalar::all(255) );
     cout << "Direction :"<<result<<endl;
 
 //    imshow("result_Text",result_mat);

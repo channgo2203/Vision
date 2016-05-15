@@ -3,7 +3,7 @@
 //
 
 #include "line.h"
-#include "../main.h"
+#include "../android_core.h"
 
 
 ResultLines lineDetection(Mat origin,int w1, int w2) {

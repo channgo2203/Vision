@@ -9,9 +9,6 @@
 #include <iostream>
 #include <cstring>
 #include <math.h>
-#include <android/log.h>
-#include <time.h>
-#define APPNAME "MyApp"
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>

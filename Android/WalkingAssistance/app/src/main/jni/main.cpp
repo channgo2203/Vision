@@ -4,12 +4,12 @@
 #include <jni.h>
 #include "com_github_codertimo_walkingassistance_MainActivity.h"
 #include "core/default.h"
-#include "core/Processing.h"
+#include "core/android_core.h"
 
 JNIEXPORT jint JNICALL Java_com_github_codertimo_walkingassistance_MainActivity_cornerDetection
-        (JNIEnv*, jobject, jlong matAddr, jint w1, jint w2)
+        (JNIEnv*, jobject, jlong matAddr)
 {
     Mat& mat = *(Mat*)matAddr;
-    int result = cornerDetection(mat,w1,w2);
+    int result = mainDetection(mat);
     return result;
 }

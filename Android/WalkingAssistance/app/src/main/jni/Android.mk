@@ -10,7 +10,7 @@ OPENCV_LIB_TYPE:=SHARED
 
 include ${OPENCVROOT}/sdk/native/jni/OpenCV.mk
 
-LOCAL_SRC_FILES := main.cpp core/Processing.cpp core/ConerDetection.cpp core/line.cpp
+LOCAL_SRC_FILES := main.cpp core/CornerDetection/ResultLines.cpp core/CornerDetection/CornerDetection.cpp core/LineDetector/line.cpp
 LOCAL_LDLIBS += -llog
 LOCAL_MODULE := swd
 

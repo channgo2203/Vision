@@ -5,7 +5,7 @@
 #ifndef GOOGLESCIENCEFAIR_LOGING_H
 #define GOOGLESCIENCEFAIR_LOGING_H
 
-#include "../CornerDetector/default.h"
+#include "../default.h"
 #include "../CornerDetector/CornerCode.h"
 
 #include <python2.7/python.h>

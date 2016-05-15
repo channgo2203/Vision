@@ -15,7 +15,7 @@ static LineCounts linecounts;
  * Mac환경에서 사용가능하도록 개발된 Main
  */
 int main() {
-    
+
     //Python Matplot 초기화
     loging_initalizing(); //윈도우 경우 주석처리
     
@@ -70,7 +70,6 @@ void processing_video(string fileurl, string name) {
             //누적된 line들 초기화
             linecounts.clear();
         }
-
         //보도 이탈 검출
 //        int escape_code = escape_detection(resultLines.roadlines);
     }
@@ -81,8 +80,7 @@ void processing_video(string fileurl, string name) {
     cap.release();
 }
 
-int compact_main(Mat origin)
-{
+int compact_main(Mat origin) {
     Mat dst;
 
     resize(origin, dst, Size(origin.cols*0.3,origin.rows*0.3));
@@ -93,6 +91,7 @@ int compact_main(Mat origin)
     //Houghline 으로 Line 검출 및 분류
     ResultLines resultLines = lineDetection(dst,w1,0);
 
+
     //Line 누적 <40Frame>
     linecounts.insert(resultLines);
 
@@ -101,7 +100,7 @@ int compact_main(Mat origin)
     {
         //방향성 검출
         int direction_code = cornerDetection2(linecounts);
-
+        int escape_code = escapeDetection();
         //누적된 line들 초기화
         linecounts.clear();
 
@@ -109,11 +108,8 @@ int compact_main(Mat origin)
         return direction_code;
     }
 
-//    보도 이탈 검출
-//        int escape_code = escape_detection(resultLines.roadlines);
     return NOTHING;
 }
-
 void houghline_stablization() {
     //line크기에 따른 HoughLine Weight값 조정
     if(linesize>20)

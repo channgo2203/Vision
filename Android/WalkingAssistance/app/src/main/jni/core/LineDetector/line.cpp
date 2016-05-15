@@ -3,7 +3,7 @@
 //
 
 #include "line.h"
-#include "../main.h"
+#include "../android_core.h"
 
 
 ResultLines lineDetection(Mat origin,int w1, int w2) {
@@ -29,11 +29,12 @@ ResultLines lineDetection(Mat origin,int w1, int w2) {
         pt2.y = cvRound(y0 - 1000 * (a));
         Vec4i vec4i = Vec4i(pt1.x,pt1.y,pt2.x,pt2.y);
         double degree = theta/CV_PI*180;
-        line(test,pt1,pt2,Scalar(255,255,255),3);
+        line(test,pt1,pt2,Scalar(255),3);
 
         degreeChecking(degree,vec4i,pt1,pt2,&resultlines,origin);
         resultlines.allLines.push_back(vec4i);
     }
+
     return resultlines;
 }
 void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLines* resultLines, Mat origin) {
@@ -43,12 +44,12 @@ void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLine
         resultLines->verticalLines.push_back(vec4i);
     }
     else if(degree>20 && degree<60) {
-        line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
+//        line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
         resultLines->roadlines_left.push_back(vec4i);
         resultLines->roadlines.push_back(vec4i);
     }
     else if(degree>115 && degree<155) {
-        line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
+//        line(origin, pt1, pt2, Scalar(100,255,100), 3, CV_AA);
         resultLines->roadlines_right.push_back(vec4i);
         resultLines->roadlines.push_back(vec4i);
     }
@@ -57,19 +58,19 @@ void degreeChecking(double degree, Vec4i vec4i, Point pt1, Point pt2, ResultLine
         resultLines->otherlines.push_back(vec4i);
         if(degree>60 && degree<85)
         {
-            line(origin, pt1, pt2, Scalar(0,255,255), 3, CV_AA);
+//            line(origin, pt1, pt2, Scalar(0,255,255), 3, CV_AA);
             resultLines->connerlines.push_back(vec4i);
             resultLines->conerlines_right.push_back(vec4i);
         }
         else if(degree>95 && degree<115)
         {
-            line(origin, pt1, pt2, Scalar(255,0,255), 3, CV_AA);
+//            line(origin, pt1, pt2, Scalar(255,0,255), 3, CV_AA);
             resultLines->conerline_left.push_back(vec4i);
             resultLines->connerlines.push_back(vec4i);
         }
         else
         {
-            line(origin, pt1, pt2, Scalar(255,255,255), 3, CV_AA);
+//            line(origin, pt1, pt2, Scalar(255,255,255), 3, CV_AA);
             resultLines->horizenLines.push_back(vec4i);
         }
     }
