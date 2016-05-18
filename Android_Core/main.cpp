@@ -4,10 +4,12 @@
 #include "default.h"
 #include "android_core.h"
 
+extern int a, b;
+
 int main()
 {
     //Video Input Initializing
-    VideoCapture cap("/Users/codertimo/Desktop/Test3/sidewalk10.mp4");
+    VideoCapture cap("/Users/codertimo/Desktop/Test3/IMG_1390.m4v");
 
 
     //Video Frame Loop
@@ -18,13 +20,9 @@ int main()
 
         int result = cornerDetection(origin);
 
-        if(result>0)
-        {
-            cout << result << endl;
-        }
-        imshow("gg",origin);
         cvWaitKey(1);
-
     }
+
+    cout << "Accuracy : " << (double)a/(a+b) << endl;
     cout << "Video Finish" << endl;
 }

@@ -3,12 +3,15 @@
 //
 
 #include "android_core.h"
+#include "EscapeDetector/EscapeDetection.h"
 
 static int linesize = 30;
 static int w1 =120;
 static int frame_count =1;
+
 static LineCounts linecounts;
 static clock_t begin_t;
+
 static double avg_second = 0.0;
 static bool isInitialized = false;
 

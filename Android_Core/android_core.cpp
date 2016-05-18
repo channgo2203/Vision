@@ -10,6 +10,9 @@ static int frame_count =1;
 static LineCounts linecounts;
 static bool isInitialize = false;
 
+int a;
+int b;
+
 int cornerDetection(Mat origin) {
 
     if(!isInitialize)
@@ -62,5 +65,21 @@ void houghline_stablization_android() {
 }
 void setLineSize(int size) {
     linesize = size;
+}
+
+string toString(int code)
+{
+    switch (code)
+    {
+        case RIGHT_VERTICAL:
+            return "Right Vertical Corner";
+        case RIGHT_ROUND:
+            return "Right Bended Corner";
+        case LEFT_VERTIVAL:
+            return "Left Vertical Corner";
+        case LEFT_ROUND:
+            return "Left Round Corner";
+    }
+    return "Nothing";
 }
 

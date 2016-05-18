@@ -16,5 +16,6 @@
 void setLineSize(int size);
 void houghline_stablization_android();
 int cornerDetection(Mat origin);
+string toString(int code);
 
 #endif //GOOGLESCIENCEFAIR_ANDROID_MAIN_H

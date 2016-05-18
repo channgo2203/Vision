@@ -8,12 +8,12 @@ class LineMap
 		double dPrevSlope;
 		vector<Vec4i> vLines;
 		vector<Vec4i> vResLine;
-		static Mat smStack;
 
 	public:
+		Mat smStack;
 		LineMap();
 		~LineMap();
 		void accumulate_lines(ResultLines resLines);
 		int escapeDetection();
-		void static setSmStack(Size);
+		void setSmStack(Size);
 };

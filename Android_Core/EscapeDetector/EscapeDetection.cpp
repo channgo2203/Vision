@@ -8,12 +8,12 @@ static LineMap lineMap;
 void escapeDetection_initailize()
 {
     lineMap = LineMap::LineMap();
-    LineMap::setSmStack(Size(600, 400));
+    lineMap.setSmStack(Size(600, 400));
 }
 void escapeDetection_lineAccumulate(ResultLines resultLines){
     lineMap.accumulate_lines(resultLines);
 }
 int escapeDetection()
 {
-    lineMap.escapeDetection();
+    return lineMap.escapeDetection();
 }

@@ -26,8 +26,9 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
     private TextToSpeech textToSpeech;
     private TextView escape_textview;
     private TextView corner_textview;
-    int pre_cornerDetection_code;
-    int pre_escapeDetection_code;
+
+    int pre_cornerDetection_code=0;
+    int pre_escapeDetection_code=0;
 
 
     @Override
@@ -52,7 +53,7 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
 
 
             //4. 결과값 출력 및 TTS
-            if(detection_code>CornerCode.NOTHING) {
+            if(cornerDetection_code>0) {
                 pre_cornerDetection_code = cornerDetection_code;
                 pre_escapeDetection_code = escapeDetection_code;
                 printText();
@@ -84,7 +85,7 @@ public class MainActivity extends Activity implements CameraBridgeViewBase.CvCam
     private void layout_initialize() {
 
         corner_textview = (TextView)findViewById(R.id.corner_textview);
-        escape_textview = (TextView)findViewById(R.id.escape_textview);
+        escape_textview = (TextView)findViewById(R.id.escape_Textview);
 
         mOpenCvCameraView = (CameraBridgeViewBase)
                 findViewById(R.id.activity_surface_view);
